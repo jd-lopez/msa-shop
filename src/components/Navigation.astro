@@ -1,0 +1,240 @@
+---
+import logo from "../assets/logo.svg";
+---
+
+<header
+  class="site-header sticky top-0 z-50 border-b border-white/70 bg-white/75 shadow-[0_8px_30px_rgba(30,64,175,0.08)] backdrop-blur-xl"
+>
+  <nav
+    class="relative mx-auto flex min-h-18 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
+    aria-label="Navegación principal"
+  >
+    <a
+      class="rounded-full focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none"
+      href="#inicio"
+      aria-label="Ir al inicio"
+    >
+      <img
+        src={logo.src}
+        alt="MSA Multiservicio Amador"
+        class="size-14 rounded-full sm:size-16"
+      />
+    </a>
+
+    <div class="hidden items-center gap-1 text-sm font-bold text-slate-600 md:flex">
+      <a class="nav-link" href="#inicio" aria-current="location">Inicio</a>
+      <a class="nav-link" href="#servicios">Servicios</a>
+      <a class="nav-link" href="#nosotros">Nosotros</a>
+      <a class="nav-link" href="#contacto">Contacto</a>
+    </div>
+
+    <a class="nav-cta hidden md:inline-flex" href="#contacto">
+      Agendar diagnóstico <span aria-hidden="true">→</span>
+    </a>
+
+    <button
+      class="menu-toggle grid size-11 place-items-center rounded-xl border border-blue-100 bg-white/70 text-slate-700 shadow-sm transition-colors hover:bg-blue-50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none md:hidden"
+      type="button"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-navigation"
+    >
+      <span class="menu-icon" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+
+    <div id="mobile-navigation" class="nav-links" aria-hidden="true">
+      <div class="mobile-panel">
+        <a class="mobile-link" href="#inicio" aria-current="location">Inicio</a>
+        <a class="mobile-link" href="#servicios">Servicios</a>
+        <a class="mobile-link" href="#nosotros">Nosotros</a>
+        <a class="mobile-link" href="#contacto">Contacto</a>
+        <a class="nav-cta mt-2 justify-center" href="#contacto">
+          Agendar diagnóstico <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .nav-link,
+  .mobile-link {
+    border-radius: 0.75rem;
+    transition:
+      color 200ms ease,
+      background-color 200ms ease;
+  }
+
+  .nav-link {
+    padding: 0.65rem 0.9rem;
+  }
+
+  .nav-link:hover,
+  .nav-link[aria-current="location"] {
+    color: rgb(29 78 216);
+    background: rgb(219 234 254 / 0.58);
+  }
+
+  .nav-link:focus-visible,
+  .mobile-link:focus-visible,
+  .nav-cta:focus-visible {
+    outline: 2px solid rgb(59 130 246);
+    outline-offset: 3px;
+  }
+
+  .nav-cta {
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.15rem;
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 700;
+    border-radius: 0.75rem;
+    background: rgb(37 99 235);
+    box-shadow: 0 10px 25px rgb(37 99 235 / 0.22);
+    transition:
+      transform 250ms ease,
+      background-color 250ms ease,
+      box-shadow 250ms ease;
+  }
+
+  .nav-cta:hover {
+    transform: translateY(-2px);
+    background: rgb(59 130 246);
+    box-shadow: 0 14px 30px rgb(37 99 235 / 0.28);
+  }
+
+  .menu-icon {
+    position: relative;
+    display: flex;
+    width: 1.5rem;
+    height: 1.125rem;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .menu-icon span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    border-radius: 9999px;
+    background: currentColor;
+    transform-origin: center;
+    transition:
+      transform 250ms ease,
+      opacity 200ms ease;
+  }
+
+  .menu-toggle[aria-expanded="true"] .menu-icon span:first-child {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle[aria-expanded="true"] .menu-icon span:last-child {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .nav-links {
+    position: absolute;
+    top: calc(100% + 0.65rem);
+    right: 1rem;
+    left: 1rem;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.75rem) scale(0.98);
+    transform-origin: top;
+    transition:
+      opacity 220ms ease,
+      transform 220ms ease,
+      visibility 220ms;
+  }
+
+  .nav-links.open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+
+  .mobile-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.75rem;
+    border: 1px solid rgb(255 255 255 / 0.8);
+    border-radius: 1rem;
+    background: rgb(255 255 255 / 0.88);
+    box-shadow: 0 20px 50px rgb(30 64 175 / 0.16);
+    backdrop-filter: blur(20px) saturate(145%);
+    -webkit-backdrop-filter: blur(20px) saturate(145%);
+  }
+
+  .mobile-link {
+    padding: 0.8rem 1rem;
+    color: rgb(71 85 105);
+    font-weight: 700;
+  }
+
+  .mobile-link:hover,
+  .mobile-link[aria-current="location"] {
+    color: rgb(29 78 216);
+    background: rgb(219 234 254 / 0.58);
+  }
+
+  @media (min-width: 48rem) {
+    .nav-links {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-links,
+    .menu-icon span,
+    .nav-cta {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>(".site-header");
+  const toggle = header?.querySelector<HTMLButtonElement>(".menu-toggle");
+  const menu = header?.querySelector<HTMLElement>(".nav-links");
+
+  const setMenuOpen = (open: boolean) => {
+    toggle?.setAttribute("aria-expanded", String(open));
+    toggle?.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+    menu?.setAttribute("aria-hidden", String(!open));
+    menu?.classList.toggle("open", open);
+  };
+
+  toggle?.addEventListener("click", () => {
+    setMenuOpen(toggle.getAttribute("aria-expanded") !== "true");
+  });
+
+  menu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setMenuOpen(false));
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && toggle?.getAttribute("aria-expanded") === "true") {
+      setMenuOpen(false);
+      toggle.focus();
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (header && !header.contains(event.target as Node)) {
+      setMenuOpen(false);
+    }
+  });
+</script>

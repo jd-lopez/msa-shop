@@ -1,0 +1,575 @@
+---
+import {
+  Wrench,
+  Handshake,
+  ClockCheck,
+  Car,
+  MapPinPlusInside,
+} from "@lucide/astro";
+
+const whys = [
+  {
+    icon: Wrench,
+    title: "Mantenimiento de Calidad",
+    description:
+      "Cuidamos cada vehículo con atención al detalle para ayudar a prolongar su vida útil y evitar averías inesperadas.",
+
+    featured: true,
+  },
+  {
+    icon: Handshake,
+    title: "Honestidad y Transparencia",
+    description:
+      "Te explicamos el estado de tu vehículo y las recomendaciones de mantenimiento de forma clara, sin trabajos innecesarios.",
+
+    featured: false,
+  },
+  {
+    icon: ClockCheck,
+    title: "Atención Puntual",
+    description:
+      "Valoramos tu tiempo. Nos esforzamos por brindar un servicio eficiente para que puedas volver a la carretera lo antes posible.",
+
+    featured: false,
+  },
+  {
+    icon: Car,
+    title: "Atención Personalizada",
+    description:
+      "Cada automóvil es diferente. Evaluamos las necesidades de tu vehículo para ofrecer el mantenimiento más adecuado.",
+
+    featured: false,
+  },
+  {
+    icon: MapPinPlusInside,
+    title: " Compromiso con Nuestra Comunidad",
+    description:
+      "Somos un negocio local comprometido con brindar un servicio confiable a las familias y conductores de Mateare y sus alrededores.",
+
+    featured: false,
+  },
+];
+---
+
+<section
+  class="why-us relative isolate flex flex-col items-center gap-8 overflow-hidden bg-white/60 px-4 py-16 shadow"
+>
+  <div class="wave-field" aria-hidden="true">
+    <span class="aurora aurora-one"></span>
+    <span class="aurora aurora-two"></span>
+
+    <svg
+      class="glass-wave wave-one"
+      viewBox="0 0 1440 280"
+      preserveAspectRatio="none"
+    >
+      <defs>
+        <linearGradient id="why-wave-one" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#60a5fa" stop-opacity="0"></stop>
+          <stop offset="0.24" stop-color="#2563eb"></stop>
+          <stop offset="0.52" stop-color="#06b6d4"></stop>
+          <stop offset="0.78" stop-color="#8b5cf6"></stop>
+          <stop offset="1" stop-color="#60a5fa" stop-opacity="0"></stop>
+        </linearGradient>
+      </defs>
+      <path
+        class="wave-glow"
+        d="M-80 140C160 20 360 260 600 135S1040 10 1520 145"></path>
+      <path
+        class="wave-body"
+        stroke="url(#why-wave-one)"
+        d="M-80 140C160 20 360 260 600 135S1040 10 1520 145"></path>
+      <path
+        class="wave-shine"
+        d="M-80 137C160 17 360 257 600 132S1040 7 1520 142"></path>
+      <path
+        class="wave-flow"
+        stroke="url(#why-wave-one)"
+        d="M-80 140C160 20 360 260 600 135S1040 10 1520 145"></path>
+    </svg>
+
+    <svg
+      class="glass-wave wave-two"
+      viewBox="0 0 1440 280"
+      preserveAspectRatio="none"
+    >
+      <defs>
+        <linearGradient id="why-wave-two" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#c4b5fd" stop-opacity="0"></stop>
+          <stop offset="0.2" stop-color="#7c3aed"></stop>
+          <stop offset="0.48" stop-color="#ec4899"></stop>
+          <stop offset="0.76" stop-color="#3b82f6"></stop>
+          <stop offset="1" stop-color="#c4b5fd" stop-opacity="0"></stop>
+        </linearGradient>
+      </defs>
+      <path
+        class="wave-glow"
+        d="M-100 100C140 240 360-20 650 120S1080 230 1540 70"></path>
+      <path
+        class="wave-body"
+        stroke="url(#why-wave-two)"
+        d="M-100 100C140 240 360-20 650 120S1080 230 1540 70"></path>
+      <path
+        class="wave-shine"
+        d="M-100 97C140 237 360-23 650 117S1080 227 1540 67"></path>
+      <path
+        class="wave-flow"
+        stroke="url(#why-wave-two)"
+        d="M-100 100C140 240 360-20 650 120S1080 230 1540 70"></path>
+    </svg>
+
+    <svg
+      class="glass-wave wave-three"
+      viewBox="0 0 1440 280"
+      preserveAspectRatio="none"
+    >
+      <defs>
+        <linearGradient id="why-wave-three" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#67e8f9" stop-opacity="0"></stop>
+          <stop offset="0.22" stop-color="#0891b2"></stop>
+          <stop offset="0.5" stop-color="#10b981"></stop>
+          <stop offset="0.8" stop-color="#2563eb"></stop>
+          <stop offset="1" stop-color="#67e8f9" stop-opacity="0"></stop>
+        </linearGradient>
+      </defs>
+      <path
+        class="wave-glow"
+        d="M-80 150C220 30 420 250 720 110S1190 30 1520 155"></path>
+      <path
+        class="wave-body"
+        stroke="url(#why-wave-three)"
+        d="M-80 150C220 30 420 250 720 110S1190 30 1520 155"></path>
+      <path
+        class="wave-shine"
+        d="M-80 147C220 27 420 247 720 107S1190 27 1520 152"></path>
+      <path
+        class="wave-flow"
+        stroke="url(#why-wave-three)"
+        d="M-80 150C220 30 420 250 720 110S1190 30 1520 155"></path>
+    </svg>
+  </div>
+
+  <div
+    class="relative z-10 flex flex-col items-center gap-4 text-center md:w-1/2"
+  >
+    <h2 class="text-xl font-bold text-slate-700">Por Que Elegir MSA</h2>
+    <p class="text-slate-600">
+      Nuestro Compromiso con la excelencia se refleja en cad diagnostico y
+      reparacion que realizamos en Multiservicio Amador
+    </p>
+  </div>
+
+  <div class="relative z-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+    {
+      whys.map((card) => {
+        const Icon = card.icon;
+
+        return (
+          <article
+            class={`why-card ${card.featured ? "why-card-featured md:col-span-2 hover:border-2 hover:border-white" : ""}`}
+          >
+            <div class="why-icon">
+              <Icon />
+            </div>
+            <div class="why-copy">
+              <h3>{card.title}</h3>
+              <p>{card.description}</p>
+            </div>
+          </article>
+        );
+      })
+    }
+  </div>
+</section>
+
+<style>
+  .why-us {
+    background:
+      radial-gradient(
+        circle at 8% 20%,
+        rgb(191 219 254 / 0.32),
+        transparent 30%
+      ),
+      radial-gradient(
+        circle at 92% 82%,
+        rgb(221 214 254 / 0.3),
+        transparent 32%
+      ),
+      rgb(255 255 255 / 0.72);
+  }
+
+  .why-card {
+    position: relative;
+    display: flex;
+    min-height: 10rem;
+    align-items: stretch;
+    gap: 1rem;
+    overflow: hidden;
+    padding: 1.5rem;
+    color: rgb(71 85 105);
+    border: 1px solid rgb(255 255 255 / 0.76);
+    border-radius: 1rem;
+    background: linear-gradient(
+      145deg,
+      rgb(255 255 255 / 0.82),
+      rgb(248 250 252 / 0.64)
+    );
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.86),
+      0 18px 50px rgb(30 64 175 / 0.1);
+    backdrop-filter: blur(20px) saturate(145%);
+    -webkit-backdrop-filter: blur(20px) saturate(145%);
+    transition:
+      transform 300ms ease,
+      border-color 300ms ease,
+      box-shadow 300ms ease;
+  }
+
+  .why-card::after {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      115deg,
+      rgb(255 255 255 / 0.22),
+      transparent 38%,
+      rgb(96 165 250 / 0.06)
+    );
+    content: "";
+    pointer-events: none;
+  }
+
+  .why-card-featured {
+    color: rgb(239 246 255);
+    border-color: rgb(255 255 255 / 0.54);
+    background: linear-gradient(
+      135deg,
+      rgb(37 99 235 / 0.92),
+      rgb(29 78 216 / 0.86) 52%,
+      rgb(6 182 212 / 0.78)
+    );
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.34),
+      0 20px 55px rgb(37 99 235 / 0.2);
+  }
+
+  .why-icon {
+    display: grid;
+    width: 4rem;
+    height: 4rem;
+    flex: 0 0 4rem;
+    place-items: center;
+    align-self: center;
+    color: rgb(37 99 235);
+    border: 1px solid rgb(255 255 255 / 0.82);
+    border-radius: 0.875rem;
+    background: linear-gradient(
+      145deg,
+      rgb(255 255 255 / 0.72),
+      rgb(219 234 254 / 0.5)
+    );
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.86),
+      0 9px 24px rgb(37 99 235 / 0.11);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .why-card-featured .why-icon {
+    background: linear-gradient(
+      145deg,
+      rgb(255 255 255 / 0.9),
+      rgb(239 246 255 / 0.72)
+    );
+    box-shadow:
+      inset 0 1px 0 white,
+      0 10px 26px rgb(15 23 42 / 0.14);
+  }
+
+  .why-icon :global(svg) {
+    width: 2.5rem;
+    height: 2.5rem;
+    stroke-width: 1.65;
+    filter: drop-shadow(0 3px 7px rgb(37 99 235 / 0.16));
+  }
+
+  .why-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .why-copy h3 {
+    color: rgb(30 41 59);
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .why-copy p {
+    line-height: 1.65;
+  }
+
+  .why-card-featured .why-copy h3 {
+    color: white;
+  }
+
+  .why-card-featured .why-copy p {
+    color: rgb(239 246 255 / 0.92);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .why-card:hover {
+      transform: translateY(-0.25rem);
+      border-color: rgb(147 197 253 / 0.8);
+      box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 0.9),
+        0 22px 60px rgb(37 99 235 / 0.16);
+    }
+
+    .why-card-featured:hover {
+      border-color: rgb(255 255 255 / 0.7);
+      box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 0.4),
+        0 24px 65px rgb(37 99 235 / 0.25);
+    }
+  }
+
+  .wave-field {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .aurora {
+    position: absolute;
+    border-radius: 9999px;
+    opacity: 0.2;
+    filter: blur(72px);
+    mix-blend-mode: multiply;
+    animation: aurora-drift 20s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  .aurora-one {
+    top: -9rem;
+    left: 4%;
+    width: 34rem;
+    height: 25rem;
+    background: linear-gradient(120deg, #60a5fa, #22d3ee 52%, #a78bfa);
+  }
+
+  .aurora-two {
+    right: -4rem;
+    bottom: -10rem;
+    width: 38rem;
+    height: 27rem;
+    background: linear-gradient(120deg, #c4b5fd, #f9a8d4 46%, #67e8f9);
+    animation-duration: 25s;
+    animation-delay: -12s;
+    animation-direction: alternate-reverse;
+  }
+
+  .glass-wave {
+    position: absolute;
+    left: -12%;
+    width: 124%;
+    height: 17rem;
+    overflow: visible;
+    color: rgb(37 99 235);
+    opacity: 0.66;
+    animation: wave-drift 15s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  .glass-wave path {
+    fill: none;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .wave-glow {
+    stroke: currentColor;
+    stroke-width: 38;
+    opacity: 0.12;
+    filter: blur(21px);
+  }
+
+  .wave-body {
+    stroke-width: 13;
+    opacity: 0.24;
+    filter: blur(2.2px);
+  }
+
+  .glass-wave .wave-shine {
+    stroke: white;
+    stroke-width: 1.25;
+    opacity: 0.52;
+    filter: blur(0.35px);
+  }
+
+  .wave-flow {
+    stroke-width: 2.4;
+    stroke-dasharray: 120 720;
+    stroke-dashoffset: 0;
+    opacity: 0.76;
+    filter: drop-shadow(0 0 5px rgb(255 255 255 / 0.7));
+    animation: light-flow 9s linear infinite;
+  }
+
+  .wave-one {
+    top: 2%;
+  }
+
+  .wave-two {
+    top: 37%;
+    color: rgb(124 58 237);
+    opacity: 0.58;
+    animation-duration: 18s;
+    animation-delay: -9s;
+    animation-direction: alternate-reverse;
+  }
+
+  .wave-two .wave-flow {
+    animation-duration: 11s;
+    animation-direction: reverse;
+  }
+
+  .wave-three {
+    bottom: -3%;
+    color: rgb(6 182 212);
+    opacity: 0.54;
+    animation-duration: 21s;
+    animation-delay: -13s;
+  }
+
+  .wave-three .wave-flow {
+    animation-duration: 13s;
+    animation-delay: -6s;
+  }
+
+  @keyframes wave-drift {
+    0% {
+      transform: translate3d(-3%, 0, 0) rotate(-0.7deg) scaleY(0.92);
+    }
+    50% {
+      transform: translate3d(2%, -1.15rem, 0) rotate(0.55deg) scaleY(1.08);
+    }
+    100% {
+      transform: translate3d(-0.75%, 0.85rem, 0) rotate(-0.3deg) scaleY(0.97);
+    }
+  }
+
+  @keyframes light-flow {
+    to {
+      stroke-dashoffset: -840;
+    }
+  }
+
+  @keyframes aurora-drift {
+    0% {
+      transform: translate3d(-5%, -3%, 0) rotate(-5deg) scale(0.92);
+    }
+    50% {
+      transform: translate3d(8%, 7%, 0) rotate(4deg) scale(1.08);
+    }
+    100% {
+      transform: translate3d(2%, -1%, 0) rotate(-2deg) scale(0.98);
+    }
+  }
+
+  @media (max-width: 47.999rem) {
+    .why-card {
+      min-height: auto;
+      background: linear-gradient(
+        145deg,
+        rgb(255 255 255 / 0.9),
+        rgb(248 250 252 / 0.8)
+      );
+      backdrop-filter: blur(16px) saturate(130%);
+      -webkit-backdrop-filter: blur(16px) saturate(130%);
+    }
+
+    .why-card-featured {
+      background: linear-gradient(
+        135deg,
+        rgb(37 99 235 / 0.95),
+        rgb(29 78 216 / 0.92) 55%,
+        rgb(6 182 212 / 0.86)
+      );
+    }
+
+    .wave-field {
+      opacity: 0.54;
+    }
+
+    .glass-wave {
+      left: -30%;
+      width: 160%;
+      height: 12rem;
+    }
+
+    .aurora {
+      opacity: 0.14;
+      filter: blur(54px);
+    }
+
+    .aurora-one {
+      top: 4%;
+      left: -12rem;
+      width: 26rem;
+      height: 19rem;
+    }
+
+    .aurora-two {
+      display: none;
+    }
+
+    .wave-flow {
+      stroke-width: 1.8;
+      opacity: 0.58;
+    }
+
+    .wave-one {
+      top: 6%;
+    }
+
+    .wave-two {
+      top: 56%;
+    }
+
+    .wave-three {
+      display: none;
+    }
+  }
+
+  @media (max-width: 35rem) {
+    .why-card {
+      flex-direction: column;
+      padding: 1.25rem;
+    }
+
+    .why-icon {
+      width: 3.5rem;
+      height: 3.5rem;
+      flex-basis: 3.5rem;
+      align-self: flex-start;
+    }
+
+    .why-icon :global(svg) {
+      width: 2.25rem;
+      height: 2.25rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .glass-wave,
+    .wave-flow,
+    .aurora {
+      animation: none;
+    }
+  }
+</style>

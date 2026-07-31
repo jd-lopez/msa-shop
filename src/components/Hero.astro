@@ -1,0 +1,214 @@
+---
+import hero from "../assets/mobile-h.jpg";
+
+const assurances = [
+  "Diagnóstico preciso",
+  "Trabajo transparente",
+  "Atención puntual",
+];
+---
+
+<section id="inicio" class="hero relative isolate scroll-mt-20 overflow-hidden bg-white">
+  <div class="hero-bubbles" aria-hidden="true">
+    <span class="blur-bubble bubble-blue"></span>
+    <span class="blur-bubble bubble-cyan"></span>
+    <span class="blur-bubble bubble-violet"></span>
+    <span class="blur-bubble bubble-amber"></span>
+  </div>
+
+  <div class="relative z-10 flex flex-col items-center md:flex-row-reverse">
+    <div class="relative h-180 md:block flex-2 md:h-150 md:p-4">
+      <div
+        class="absolute inset-0 md:inset-4 bg-linear-20 from-blue-300 from-5% to-gray-400/10 to-40% rounded-2xl"
+      >
+      </div>
+      <img
+        src={hero.src}
+        alt="Mantenimiento automotriz en Multiservicios Amador"
+        class="bg-cover object-cover size-full rounded-bl-2xl rounded-br-2xl md:rounded-2xl"
+      />
+    </div>
+
+    <div
+      class="flex flex-3 flex-col gap-6 px-5 py-10 sm:px-8 md:px-10 lg:px-16"
+    >
+      <div
+        class="flex w-fit items-center gap-2 rounded-full border border-blue-200/70 bg-white/65 px-3 py-1.5 text-xs font-bold tracking-[0.14em] text-blue-700 uppercase shadow-sm backdrop-blur-md"
+      >
+        <span class="size-2 rounded-full bg-cyan-400 shadow-[0_0_10px_#22d3ee]"
+        ></span>
+        Taller automotriz en Mateare
+      </div>
+
+      <h1
+        class="max-w-3xl text-4xl leading-[1.08] font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl"
+      >
+        Mantenimiento confiable para que
+        <strong
+          class="bg-linear-to-r from-blue-700 via-blue-500 to-cyan-500 bg-clip-text text-transparent ml-1"
+        >
+          sigas avanzando
+        </strong>
+      </h1>
+
+      <p
+        class="max-w-2xl text-left text-base leading-7 text-slate-600 sm:text-lg"
+      >
+        Cuidamos tu vehículo con diagnóstico preciso, trabajo honesto y atención
+        cercana. Te explicamos cada recomendación antes de comenzar para que
+        vuelvas a la carretera con total tranquilidad.
+      </p>
+
+      <div class="flex flex-col gap-3 font-bold sm:flex-row">
+        <button
+          type="button"
+          class="min-h-12 rounded-xl bg-blue-600 px-6 py-3 text-white shadow-[0_12px_30px_rgba(37,99,235,0.28)] transition-[transform,box-shadow,background-color] duration-300 hover:-translate-y-0.5 hover:bg-blue-500 hover:shadow-[0_16px_36px_rgba(37,99,235,0.34)] active:translate-y-0"
+        >
+          Agendar diagnóstico <span aria-hidden="true">→</span>
+        </button>
+        <button
+          type="button"
+          class="min-h-12 rounded-xl border border-blue-200/80 bg-white/65 px-6 py-3 text-blue-700 shadow-sm backdrop-blur-md transition-[transform,border-color,background-color] duration-300 hover:-translate-y-0.5 hover:border-blue-300 hover:bg-white/85 active:translate-y-0"
+        >
+          Explorar servicios
+        </button>
+      </div>
+
+      <ul
+        class="grid gap-3 pt-2 text-sm font-semibold text-slate-600 sm:grid-cols-3"
+      >
+        {
+          assurances.map((assurance) => (
+            <li class="flex items-center gap-2">
+              <span
+                aria-hidden="true"
+                class="grid size-5 shrink-0 place-items-center rounded-full bg-blue-100 text-xs text-blue-700"
+              >
+                ✓
+              </span>
+              {assurance}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background:
+      linear-gradient(115deg, rgb(255 255 255 / 0.88), rgb(239 246 255 / 0.58)),
+      white;
+  }
+
+  .hero-bubbles {
+    position: absolute;
+    inset: -15%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .blur-bubble {
+    --move-x: 2rem;
+    --move-y: -2rem;
+    position: absolute;
+    border-radius: 9999px;
+    opacity: 0.42;
+    filter: blur(72px) saturate(135%);
+    mix-blend-mode: multiply;
+    animation: bubble-drift 18s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  .bubble-blue {
+    top: 2%;
+    left: -4%;
+    width: 30rem;
+    height: 25rem;
+    background: #3b82f6;
+  }
+
+  .bubble-cyan {
+    --move-x: -2.5rem;
+    --move-y: 1.5rem;
+    right: 20%;
+    bottom: -8%;
+    width: 27rem;
+    height: 22rem;
+    background: #22d3ee;
+    animation-duration: 22s;
+    animation-delay: -9s;
+  }
+
+  .bubble-violet {
+    --move-x: -1.5rem;
+    --move-y: -2.5rem;
+    top: -10%;
+    right: -3%;
+    width: 24rem;
+    height: 24rem;
+    background: #a78bfa;
+    animation-duration: 25s;
+    animation-delay: -14s;
+  }
+
+  .bubble-amber {
+    --move-x: 2.75rem;
+    --move-y: 1rem;
+    bottom: -16%;
+    left: 22%;
+    width: 20rem;
+    height: 18rem;
+    background: #fbbf24;
+    opacity: 0.26;
+    animation-duration: 20s;
+    animation-delay: -6s;
+  }
+
+  @keyframes bubble-drift {
+    from {
+      transform: translate3d(0, 0, 0) scale(0.94);
+    }
+    to {
+      transform: translate3d(var(--move-x), var(--move-y), 0) scale(1.08);
+    }
+  }
+
+  @media (max-width: 47.999rem) {
+    .hero-bubbles {
+      inset: -8%;
+    }
+
+    .blur-bubble {
+      opacity: 0.28;
+      filter: blur(64px) saturate(120%);
+    }
+
+    .bubble-violet,
+    .bubble-amber {
+      display: none;
+    }
+
+    .bubble-blue {
+      top: 48%;
+      left: -10rem;
+      width: 24rem;
+      height: 20rem;
+    }
+
+    .bubble-cyan {
+      right: -11rem;
+      bottom: -2rem;
+      width: 23rem;
+      height: 19rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .blur-bubble {
+      animation: none;
+    }
+  }
+</style>
