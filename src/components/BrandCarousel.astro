@@ -18,45 +18,33 @@ const brands = [
 
 <section
   id="marcas"
-  class="relative isolate overflow-hidden border-y border-blue-100/70 bg-gradient-to-b from-white/80 to-blue-50/70 py-16"
+  class="brand-section relative isolate overflow-hidden border-y border-blue-100/70 bg-linear-to-b from-white/90 to-blue-50/80 py-16 dark:border-slate-800 dark:from-[#070b12] dark:to-slate-900"
   aria-labelledby="brands-title"
 >
-  <div
-    class="absolute -top-24 left-1/4 -z-10 size-72 rounded-full bg-cyan-200/35 blur-3xl"
-    aria-hidden="true"
-  ></div>
-  <div
-    class="absolute -right-24 -bottom-28 -z-10 size-80 rounded-full bg-blue-200/40 blur-3xl"
-    aria-hidden="true"
-  ></div>
-
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+    <div
+      class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between"
+    >
       <div class="max-w-2xl">
-        <p class="mb-3 text-sm font-bold tracking-[0.16em] text-blue-600 uppercase">
+        <p
+          class="mb-3 text-sm font-bold tracking-[0.16em] text-blue-600 uppercase dark:text-blue-300"
+        >
           Experiencia multimarca
         </p>
-        <h2 id="brands-title" class="text-3xl font-extrabold tracking-tight text-slate-800 sm:text-4xl">
+        <h2
+          id="brands-title"
+          class="text-3xl font-extrabold tracking-tight text-slate-800 dark:text-slate-50 sm:text-4xl"
+        >
           Marcas que atendemos
         </h2>
-        <p class="mt-4 leading-7 text-slate-600">
+        <p class="mt-4 leading-7 text-slate-600 dark:text-slate-300">
           Estas son algunas de las marcas que recibimos en nuestro taller para
           diagnóstico, mantenimiento y reparación.
         </p>
       </div>
-
-      <button
-        class="carousel-toggle motion-reduce:hidden flex w-fit items-center gap-2 rounded-full border border-blue-200/80 bg-white/70 px-4 py-2 text-sm font-bold text-blue-700 shadow-sm backdrop-blur-md transition-colors hover:bg-white focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none"
-        type="button"
-        aria-pressed="false"
-        aria-label="Pausar carrusel de marcas"
-      >
-        <span class="carousel-toggle-icon" aria-hidden="true">Ⅱ</span>
-        <span class="carousel-toggle-label">Pausar</span>
-      </button>
     </div>
 
-    <div class="brand-carousel mt-10 overflow-hidden py-3">
+    <div class="brand-carousel relative mt-10 overflow-hidden py-3">
       <div class="brand-track flex w-max">
         {
           [false, true].map((duplicate) => (
@@ -65,7 +53,7 @@ const brands = [
               aria-hidden={duplicate ? "true" : undefined}
             >
               {brands.map((brand) => (
-                <li class="group flex h-28 w-40 shrink-0 flex-col items-center justify-center gap-3 rounded-2xl border border-white/80 bg-white/65 px-6 shadow-[0_12px_35px_rgba(30,64,175,0.08)] backdrop-blur-xl transition-[transform,border-color,box-shadow,background-color] duration-300 hover:-translate-y-1 hover:border-blue-200 hover:bg-white/85 hover:shadow-[0_18px_42px_rgba(37,99,235,0.14)] sm:w-44">
+                <li class="group flex h-28 w-40 shrink-0 flex-col items-center justify-center gap-3 rounded-2xl border border-white bg-white/90 px-6 shadow-[0_12px_35px_rgba(30,64,175,0.08)] transition-[transform,border-color,box-shadow,background-color] duration-300 hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-[0_18px_42px_rgba(37,99,235,0.14)] dark:border-slate-700/80 dark:bg-slate-900/85 dark:shadow-[0_12px_38px_rgba(0,0,0,0.3)] dark:hover:border-blue-500/40 dark:hover:bg-slate-800 dark:hover:shadow-[0_18px_44px_rgba(30,64,175,0.16)] sm:w-44">
                   <img
                     src={brand.logo.src}
                     alt=""
@@ -73,9 +61,9 @@ const brands = [
                     height="56"
                     loading="lazy"
                     decoding="async"
-                    class="size-12 object-contain opacity-65 transition-[transform,opacity] duration-300 group-hover:scale-105 group-hover:opacity-90"
+                    class="size-12 object-contain opacity-65 transition-[transform,opacity] duration-300 group-hover:scale-105 group-hover:opacity-90 dark:brightness-0 dark:invert"
                   />
-                  <span class="text-sm font-bold tracking-wide text-slate-600">
+                  <span class="text-sm font-bold tracking-wide text-slate-600 dark:text-slate-300">
                     {brand.name}
                   </span>
                 </li>
@@ -89,15 +77,42 @@ const brands = [
 </section>
 
 <style>
+  .brand-section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 26rem;
+  }
+
   .brand-carousel {
-    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent,
-      black 8%,
-      black 92%,
-      transparent
-    );
+    contain: layout paint;
+  }
+
+  .brand-carousel::before,
+  .brand-carousel::after {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    width: clamp(2rem, 7vw, 5rem);
+    content: "";
+    pointer-events: none;
+  }
+
+  :global(html.dark) .brand-carousel::before {
+    background: linear-gradient(to right, rgb(7 11 18), transparent);
+  }
+
+  :global(html.dark) .brand-carousel::after {
+    background: linear-gradient(to left, rgb(12 19 31), transparent);
+  }
+
+  .brand-carousel::before {
+    left: 0;
+    background: linear-gradient(to right, rgb(248 251 255), transparent);
+  }
+
+  .brand-carousel::after {
+    right: 0;
+    background: linear-gradient(to left, rgb(244 249 255), transparent);
   }
 
   .brand-track {
@@ -111,15 +126,18 @@ const brands = [
 
   @keyframes brand-scroll {
     to {
-      transform: translateX(-50%);
+      transform: translate3d(-50%, 0, 0);
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .brand-carousel {
       overflow-x: auto;
-      mask-image: none;
-      -webkit-mask-image: none;
+    }
+
+    .brand-carousel::before,
+    .brand-carousel::after {
+      display: none;
     }
 
     .brand-track {
@@ -134,19 +152,17 @@ const brands = [
 </style>
 
 <script>
-  const toggle = document.querySelector<HTMLButtonElement>(".carousel-toggle");
-  const track = document.querySelector<HTMLElement>(".brand-track");
-  const label = toggle?.querySelector<HTMLElement>(".carousel-toggle-label");
-  const icon = toggle?.querySelector<HTMLElement>(".carousel-toggle-icon");
+  const brandSection = document.querySelector<HTMLElement>(".brand-section");
+  const brandTrack = brandSection?.querySelector<HTMLElement>(".brand-track");
 
-  toggle?.addEventListener("click", () => {
-    const paused = track?.classList.toggle("is-paused") ?? false;
-    toggle.setAttribute("aria-pressed", String(paused));
-    toggle.setAttribute(
-      "aria-label",
-      paused ? "Reanudar carrusel de marcas" : "Pausar carrusel de marcas",
+  if (brandSection && brandTrack && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        brandTrack.classList.toggle("is-paused", !entry.isIntersecting);
+      },
+      { rootMargin: "150px 0px" },
     );
-    if (label) label.textContent = paused ? "Reanudar" : "Pausar";
-    if (icon) icon.textContent = paused ? "▶" : "Ⅱ";
-  });
+
+    observer.observe(brandSection);
+  }
 </script>

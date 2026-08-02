@@ -52,12 +52,10 @@ const whys = [
 ---
 
 <section
-  class="why-us relative isolate flex flex-col items-center gap-8 overflow-hidden bg-white/60 px-4 py-16 shadow"
+  id="nosotros"
+  class="why-us relative isolate flex flex-col items-center gap-8 overflow-hidden bg-white/60 px-4 py-16 shadow dark:bg-slate-950/70 dark:shadow-[0_18px_55px_rgba(0,0,0,0.36)]"
 >
   <div class="wave-field" aria-hidden="true">
-    <span class="aurora aurora-one"></span>
-    <span class="aurora aurora-two"></span>
-
     <svg
       class="glass-wave wave-one"
       viewBox="0 0 1440 280"
@@ -72,9 +70,6 @@ const whys = [
           <stop offset="1" stop-color="#60a5fa" stop-opacity="0"></stop>
         </linearGradient>
       </defs>
-      <path
-        class="wave-glow"
-        d="M-80 140C160 20 360 260 600 135S1040 10 1520 145"></path>
       <path
         class="wave-body"
         stroke="url(#why-wave-one)"
@@ -103,57 +98,22 @@ const whys = [
         </linearGradient>
       </defs>
       <path
-        class="wave-glow"
-        d="M-100 100C140 240 360-20 650 120S1080 230 1540 70"></path>
-      <path
         class="wave-body"
         stroke="url(#why-wave-two)"
         d="M-100 100C140 240 360-20 650 120S1080 230 1540 70"></path>
       <path
         class="wave-shine"
         d="M-100 97C140 237 360-23 650 117S1080 227 1540 67"></path>
-      <path
-        class="wave-flow"
-        stroke="url(#why-wave-two)"
-        d="M-100 100C140 240 360-20 650 120S1080 230 1540 70"></path>
-    </svg>
-
-    <svg
-      class="glass-wave wave-three"
-      viewBox="0 0 1440 280"
-      preserveAspectRatio="none"
-    >
-      <defs>
-        <linearGradient id="why-wave-three" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stop-color="#67e8f9" stop-opacity="0"></stop>
-          <stop offset="0.22" stop-color="#0891b2"></stop>
-          <stop offset="0.5" stop-color="#10b981"></stop>
-          <stop offset="0.8" stop-color="#2563eb"></stop>
-          <stop offset="1" stop-color="#67e8f9" stop-opacity="0"></stop>
-        </linearGradient>
-      </defs>
-      <path
-        class="wave-glow"
-        d="M-80 150C220 30 420 250 720 110S1190 30 1520 155"></path>
-      <path
-        class="wave-body"
-        stroke="url(#why-wave-three)"
-        d="M-80 150C220 30 420 250 720 110S1190 30 1520 155"></path>
-      <path
-        class="wave-shine"
-        d="M-80 147C220 27 420 247 720 107S1190 27 1520 152"></path>
-      <path
-        class="wave-flow"
-        stroke="url(#why-wave-three)"
-        d="M-80 150C220 30 420 250 720 110S1190 30 1520 155"></path>
     </svg>
   </div>
 
   <div
     class="relative z-10 flex flex-col items-center gap-4 text-center md:w-1/2"
   >
-    <h2 class="text-xl font-bold">Por Que Elegir MSA</h2>
-    <p class="">
+    <h2 class="text-xl font-bold text-slate-900 dark:text-slate-50">
+      Por Que Elegir MSA
+    </h2>
+    <p class="text-slate-600 dark:text-slate-300">
       Nuestro Compromiso con la excelencia se refleja en cad diagnostico y
       reparacion que realizamos en Multiservicio Amador
     </p>
@@ -166,7 +126,7 @@ const whys = [
 
         return (
           <article
-            class={`why-card ${card.featured ? "why-card-featured md:col-span-2 hover:border-2 hover:border-white" : ""}`}
+            class={`why-card ${card.featured ? "why-card-featured md:col-span-2" : ""}`}
           >
             <div class="why-icon">
               <Icon />
@@ -184,17 +144,20 @@ const whys = [
 
 <style>
   .why-us {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 55rem;
     background:
       radial-gradient(
         circle at 8% 20%,
-        rgb(191 219 254 / 0.32),
+        rgb(191 219 254 / 0.38),
         transparent 30%
       ),
       radial-gradient(
         circle at 92% 82%,
-        rgb(221 214 254 / 0.3),
+        rgb(221 214 254 / 0.34),
         transparent 32%
       ),
+      radial-gradient(circle at 52% 50%, rgb(165 243 252 / 0.16), transparent 36%),
       rgb(255 255 255 / 0.72);
   }
 
@@ -217,8 +180,6 @@ const whys = [
     box-shadow:
       inset 0 1px 0 rgb(255 255 255 / 0.86),
       0 18px 50px rgb(30 64 175 / 0.1);
-    backdrop-filter: blur(20px) saturate(145%);
-    -webkit-backdrop-filter: blur(20px) saturate(145%);
     transition:
       transform 300ms ease,
       border-color 300ms ease,
@@ -271,8 +232,6 @@ const whys = [
     box-shadow:
       inset 0 1px 0 rgb(255 255 255 / 0.86),
       0 9px 24px rgb(37 99 235 / 0.11);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
   }
 
   .why-card-featured .why-icon {
@@ -290,7 +249,6 @@ const whys = [
     width: 2.5rem;
     height: 2.5rem;
     stroke-width: 1.65;
-    filter: drop-shadow(0 3px 7px rgb(37 99 235 / 0.16));
   }
 
   .why-copy {
@@ -344,35 +302,6 @@ const whys = [
     pointer-events: none;
   }
 
-  .aurora {
-    position: absolute;
-    border-radius: 9999px;
-    opacity: 0.2;
-    filter: blur(72px);
-    mix-blend-mode: multiply;
-    animation: aurora-drift 20s ease-in-out infinite alternate;
-    will-change: transform;
-  }
-
-  .aurora-one {
-    top: -9rem;
-    left: 4%;
-    width: 34rem;
-    height: 25rem;
-    background: linear-gradient(120deg, #60a5fa, #22d3ee 52%, #a78bfa);
-  }
-
-  .aurora-two {
-    right: -4rem;
-    bottom: -10rem;
-    width: 38rem;
-    height: 27rem;
-    background: linear-gradient(120deg, #c4b5fd, #f9a8d4 46%, #67e8f9);
-    animation-duration: 25s;
-    animation-delay: -12s;
-    animation-direction: alternate-reverse;
-  }
-
   .glass-wave {
     position: absolute;
     left: -12%;
@@ -380,9 +309,8 @@ const whys = [
     height: 17rem;
     overflow: visible;
     color: rgb(37 99 235);
-    opacity: 0.66;
-    animation: wave-drift 15s ease-in-out infinite alternate;
-    will-change: transform;
+    opacity: 0.58;
+    animation: wave-drift 18s ease-in-out infinite alternate;
   }
 
   .glass-wave path {
@@ -391,33 +319,23 @@ const whys = [
     vector-effect: non-scaling-stroke;
   }
 
-  .wave-glow {
-    stroke: currentColor;
-    stroke-width: 38;
-    opacity: 0.12;
-    filter: blur(21px);
-  }
-
   .wave-body {
-    stroke-width: 13;
-    opacity: 0.24;
-    filter: blur(2.2px);
+    stroke-width: 10;
+    opacity: 0.2;
   }
 
   .glass-wave .wave-shine {
     stroke: white;
     stroke-width: 1.25;
-    opacity: 0.52;
-    filter: blur(0.35px);
+    opacity: 0.5;
   }
 
   .wave-flow {
     stroke-width: 2.4;
     stroke-dasharray: 120 720;
     stroke-dashoffset: 0;
-    opacity: 0.76;
-    filter: drop-shadow(0 0 5px rgb(255 255 255 / 0.7));
-    animation: light-flow 9s linear infinite;
+    opacity: 0.68;
+    animation: light-flow 12s linear infinite;
   }
 
   .wave-one {
@@ -425,30 +343,161 @@ const whys = [
   }
 
   .wave-two {
-    top: 37%;
+    top: auto;
+    bottom: 2%;
     color: rgb(124 58 237);
-    opacity: 0.58;
-    animation-duration: 18s;
+    opacity: 0.48;
+    animation-duration: 24s;
     animation-delay: -9s;
     animation-direction: alternate-reverse;
   }
 
-  .wave-two .wave-flow {
-    animation-duration: 11s;
-    animation-direction: reverse;
+  .why-us.animations-paused .glass-wave,
+  .why-us.animations-paused .wave-flow {
+    animation-play-state: paused;
   }
 
-  .wave-three {
-    bottom: -3%;
-    color: rgb(6 182 212);
-    opacity: 0.54;
-    animation-duration: 21s;
-    animation-delay: -13s;
+  :global(html.dark) .why-us {
+    background:
+      radial-gradient(circle at 7% 16%, rgb(30 64 175 / 0.22), transparent 33%),
+      radial-gradient(circle at 92% 84%, rgb(51 65 85 / 0.2), transparent 35%),
+      radial-gradient(circle at 52% 48%, rgb(37 99 235 / 0.1), transparent 38%),
+      linear-gradient(145deg, rgb(7 11 18 / 0.99), rgb(15 23 35 / 0.95));
   }
 
-  .wave-three .wave-flow {
-    animation-duration: 13s;
-    animation-delay: -6s;
+  :global(html.dark) .why-card {
+    color: rgb(203 213 225);
+    border-color: rgb(96 165 250 / 0.16);
+    background: linear-gradient(
+      145deg,
+      rgb(15 23 42 / 0.92),
+      rgb(30 41 59 / 0.72)
+    );
+    box-shadow:
+      inset 0 1px 0 rgb(148 163 184 / 0.12),
+      0 18px 50px rgb(0 0 0 / 0.3);
+  }
+
+  :global(html.dark) .why-card::after {
+    background: linear-gradient(
+      115deg,
+      rgb(96 165 250 / 0.08),
+      transparent 42%,
+      rgb(59 130 246 / 0.05)
+    );
+  }
+
+  :global(html.dark) .why-card-featured {
+    color: rgb(239 246 255);
+    border-color: rgb(96 165 250 / 0.24);
+    background: linear-gradient(
+      135deg,
+      rgb(23 37 84 / 0.96),
+      rgb(30 58 138 / 0.9) 54%,
+      rgb(51 65 85 / 0.88)
+    );
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.16),
+      0 22px 58px rgb(37 99 235 / 0.22);
+  }
+
+  :global(html.dark) .why-icon {
+    color: rgb(147 197 253);
+    border-color: rgb(96 165 250 / 0.18);
+    background: linear-gradient(
+      145deg,
+      rgb(30 41 59 / 0.92),
+      rgb(30 64 175 / 0.34)
+    );
+    box-shadow:
+      inset 0 1px 0 rgb(148 163 184 / 0.14),
+      0 9px 25px rgb(0 0 0 / 0.24);
+  }
+
+  :global(html.dark) .why-card-featured .why-icon {
+    color: rgb(191 219 254);
+    border-color: rgb(255 255 255 / 0.18);
+    background: linear-gradient(
+      145deg,
+      rgb(30 41 59 / 0.92),
+      rgb(30 64 175 / 0.62)
+    );
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.14),
+      0 10px 28px rgb(2 6 23 / 0.32);
+  }
+
+  :global(html.dark) .why-copy h3 {
+    color: rgb(241 245 249);
+  }
+
+  :global(html.dark) .why-copy p {
+    color: rgb(203 213 225);
+  }
+
+  :global(html.dark) .why-card-featured .why-copy h3 {
+    color: white;
+  }
+
+  :global(html.dark) .why-card-featured .why-copy p {
+    color: rgb(224 242 254 / 0.94);
+  }
+
+  :global(html.dark) .glass-wave {
+    opacity: 0.76;
+  }
+
+  :global(html.dark) .wave-body {
+    opacity: 0.3;
+  }
+
+  :global(html.dark) .glass-wave .wave-shine {
+    stroke: rgb(148 163 184);
+    opacity: 0.36;
+  }
+
+  :global(html.dark) .wave-flow {
+    opacity: 0.68;
+  }
+
+  :global(html.dark) #why-wave-one stop:nth-child(2) {
+    stop-color: #315b9c;
+  }
+
+  :global(html.dark) #why-wave-one stop:nth-child(3) {
+    stop-color: #496f9d;
+  }
+
+  :global(html.dark) #why-wave-one stop:nth-child(4) {
+    stop-color: #64748b;
+  }
+
+  :global(html.dark) #why-wave-two stop:nth-child(2) {
+    stop-color: #334155;
+  }
+
+  :global(html.dark) #why-wave-two stop:nth-child(3) {
+    stop-color: #475569;
+  }
+
+  :global(html.dark) #why-wave-two stop:nth-child(4) {
+    stop-color: #1e3a8a;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    :global(html.dark) .why-card:hover {
+      border-color: rgb(96 165 250 / 0.34);
+      box-shadow:
+        inset 0 1px 0 rgb(148 163 184 / 0.16),
+        0 24px 62px rgb(0 0 0 / 0.4);
+    }
+
+    :global(html.dark) .why-card-featured:hover {
+      border-color: rgb(147 197 253 / 0.42);
+      box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 0.2),
+        0 26px 68px rgb(37 99 235 / 0.3);
+    }
   }
 
   @keyframes wave-drift {
@@ -469,18 +518,6 @@ const whys = [
     }
   }
 
-  @keyframes aurora-drift {
-    0% {
-      transform: translate3d(-5%, -3%, 0) rotate(-5deg) scale(0.92);
-    }
-    50% {
-      transform: translate3d(8%, 7%, 0) rotate(4deg) scale(1.08);
-    }
-    100% {
-      transform: translate3d(2%, -1%, 0) rotate(-2deg) scale(0.98);
-    }
-  }
-
   @media (max-width: 47.999rem) {
     .why-card {
       min-height: auto;
@@ -489,8 +526,6 @@ const whys = [
         rgb(255 255 255 / 0.9),
         rgb(248 250 252 / 0.8)
       );
-      backdrop-filter: blur(16px) saturate(130%);
-      -webkit-backdrop-filter: blur(16px) saturate(130%);
     }
 
     .why-card-featured {
@@ -512,22 +547,6 @@ const whys = [
       height: 12rem;
     }
 
-    .aurora {
-      opacity: 0.14;
-      filter: blur(54px);
-    }
-
-    .aurora-one {
-      top: 4%;
-      left: -12rem;
-      width: 26rem;
-      height: 19rem;
-    }
-
-    .aurora-two {
-      display: none;
-    }
-
     .wave-flow {
       stroke-width: 1.8;
       opacity: 0.58;
@@ -538,10 +557,6 @@ const whys = [
     }
 
     .wave-two {
-      top: 56%;
-    }
-
-    .wave-three {
       display: none;
     }
   }
@@ -567,9 +582,23 @@ const whys = [
 
   @media (prefers-reduced-motion: reduce) {
     .glass-wave,
-    .wave-flow,
-    .aurora {
+    .wave-flow {
       animation: none;
     }
   }
 </style>
+
+<script>
+  const whyUs = document.querySelector<HTMLElement>(".why-us");
+
+  if (whyUs && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        whyUs.classList.toggle("animations-paused", !entry.isIntersecting);
+      },
+      { rootMargin: "150px 0px" },
+    );
+
+    observer.observe(whyUs);
+  }
+</script>

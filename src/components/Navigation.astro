@@ -1,50 +1,73 @@
 ---
-import logo from "../assets/logo.svg";
+import { Moon, Sun } from "@lucide/astro";
+import logoLight from "../assets/logo-light.svg";
+import logoNight from "../assets/logo-night.svg";
 ---
 
 <header
-  class="site-header sticky top-0 z-50 border-b border-white/70 bg-white/75 shadow-[0_8px_30px_rgba(30,64,175,0.08)] backdrop-blur-xl"
+  class="site-header sticky top-0 z-50 border-b border-blue-100/80 bg-white/95 shadow-[0_8px_30px_rgba(30,64,175,0.08)] dark:border-slate-800 dark:bg-[#070b12]/95 dark:shadow-[0_8px_35px_rgba(0,0,0,0.45)]"
 >
   <nav
     class="relative mx-auto flex min-h-18 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
     aria-label="Navegación principal"
   >
     <a
-      class="rounded-full focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none"
+      class="rounded-full size-28 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none"
       href="#inicio"
       aria-label="Ir al inicio"
     >
       <img
-        src={logo.src}
+        src={logoLight.src}
         alt="MSA Multiservicio Amador"
-        class="size-14 rounded-full sm:size-16"
+        class="size-full rounded-full dark:hidden"
+      />
+      <img
+        src={logoNight.src}
+        alt=""
+        aria-hidden="true"
+        class="hidden size-full rounded-full dark:block"
       />
     </a>
 
-    <div class="hidden items-center gap-1 text-sm font-bold text-slate-600 md:flex">
+    <div
+      class="hidden items-center gap-1 text-sm font-bold text-slate-600 dark:text-slate-300 md:flex"
+    >
       <a class="nav-link" href="#inicio" aria-current="location">Inicio</a>
       <a class="nav-link" href="#servicios">Servicios</a>
       <a class="nav-link" href="#nosotros">Nosotros</a>
       <a class="nav-link" href="#contacto">Contacto</a>
     </div>
 
-    <a class="nav-cta hidden md:inline-flex" href="#contacto">
-      Agendar diagnóstico <span aria-hidden="true">→</span>
-    </a>
+    <div class="flex items-center gap-2">
+      <a class="nav-cta hidden md:inline-flex" href="#contacto">
+        Agendar diagnóstico <span aria-hidden="true">→</span>
+      </a>
 
-    <button
-      class="menu-toggle grid size-11 place-items-center rounded-xl border border-blue-100 bg-white/70 text-slate-700 shadow-sm transition-colors hover:bg-blue-50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none md:hidden"
-      type="button"
-      aria-label="Abrir menú"
-      aria-expanded="false"
-      aria-controls="mobile-navigation"
-    >
-      <span class="menu-icon" aria-hidden="true">
-        <span></span>
-        <span></span>
-        <span></span>
-      </span>
-    </button>
+      <button
+        class="theme-toggle grid size-11 place-items-center rounded-lg border border-blue-200 bg-white text-blue-700 shadow-[0_2px_0_#bfdbfe,0_5px_12px_rgba(30,64,175,0.1)] transition-[color,background-color,border-color,transform,box-shadow] duration-150 hover:-translate-y-px hover:border-blue-300 hover:bg-blue-50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none active:translate-y-[2px] active:shadow-[0_0_0_#bfdbfe,0_2px_5px_rgba(30,64,175,0.08)] dark:border-slate-600 dark:bg-slate-900 dark:text-blue-300 dark:shadow-[0_2px_0_#020617,0_5px_12px_rgba(0,0,0,0.26)] dark:hover:border-blue-500/50 dark:hover:bg-slate-800 dark:active:shadow-[0_0_0_#020617,0_2px_5px_rgba(0,0,0,0.2)]"
+        type="button"
+        aria-label="Activar modo oscuro"
+        aria-pressed="false"
+        title="Activar modo oscuro"
+      >
+        <Sun class="theme-icon theme-icon-sun" aria-hidden="true" />
+        <Moon class="theme-icon theme-icon-moon" aria-hidden="true" />
+      </button>
+
+      <button
+        class="menu-toggle grid size-11 place-items-center rounded-lg border border-slate-300 bg-white text-slate-700 shadow-[0_2px_0_#cbd5e1,0_5px_12px_rgba(15,23,42,0.08)] transition-[color,background-color,border-color,transform,box-shadow] duration-150 hover:-translate-y-px hover:border-blue-300 hover:bg-blue-50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none active:translate-y-[2px] active:shadow-[0_0_0_#cbd5e1,0_2px_5px_rgba(15,23,42,0.08)] dark:border-slate-600 dark:bg-slate-900 dark:text-slate-200 dark:shadow-[0_2px_0_#020617,0_5px_12px_rgba(0,0,0,0.26)] dark:hover:border-blue-500/50 dark:hover:bg-slate-800 dark:active:shadow-[0_0_0_#020617,0_2px_5px_rgba(0,0,0,0.2)] md:hidden"
+        type="button"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="mobile-navigation"
+      >
+        <span class="menu-icon" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
 
     <div id="mobile-navigation" class="nav-links" aria-hidden="true">
       <div class="mobile-panel">
@@ -79,6 +102,12 @@ import logo from "../assets/logo.svg";
     background: rgb(219 234 254 / 0.58);
   }
 
+  :global(html.dark) .nav-link:hover,
+  :global(html.dark) .nav-link[aria-current="location"] {
+    color: rgb(191 219 254);
+    background: rgb(30 64 175 / 0.22);
+  }
+
   .nav-link:focus-visible,
   .mobile-link:focus-visible,
   .nav-cta:focus-visible {
@@ -94,19 +123,76 @@ import logo from "../assets/logo.svg";
     color: white;
     font-size: 0.875rem;
     font-weight: 700;
+    border: 1px solid rgb(29 78 216);
     border-radius: 0.75rem;
     background: rgb(37 99 235);
-    box-shadow: 0 10px 25px rgb(37 99 235 / 0.22);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.18),
+      0 3px 0 rgb(30 64 175),
+      0 8px 18px rgb(30 64 175 / 0.18);
     transition:
-      transform 250ms ease,
-      background-color 250ms ease,
-      box-shadow 250ms ease;
+      transform 150ms ease,
+      background-color 150ms ease,
+      box-shadow 150ms ease;
   }
 
   .nav-cta:hover {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     background: rgb(59 130 246);
-    box-shadow: 0 14px 30px rgb(37 99 235 / 0.28);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.2),
+      0 4px 0 rgb(30 64 175),
+      0 11px 22px rgb(30 64 175 / 0.22);
+  }
+
+  .nav-cta:active {
+    transform: translateY(2px);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.14),
+      0 1px 0 rgb(30 64 175),
+      0 3px 8px rgb(30 64 175 / 0.16);
+  }
+
+  :global(html.dark) .nav-cta {
+    border-color: rgb(59 130 246 / 0.56);
+    background: linear-gradient(115deg, rgb(30 58 138), rgb(37 99 235));
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.14),
+      0 3px 0 rgb(23 37 84),
+      0 8px 18px rgb(0 0 0 / 0.26);
+  }
+
+  :global(html.dark) .nav-cta:hover {
+    background: linear-gradient(115deg, rgb(30 64 175), rgb(59 130 246));
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.16),
+      0 4px 0 rgb(23 37 84),
+      0 11px 24px rgb(0 0 0 / 0.3);
+  }
+
+  :global(html.dark) .nav-cta:active {
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.12),
+      0 1px 0 rgb(23 37 84),
+      0 3px 8px rgb(0 0 0 / 0.24);
+  }
+
+  .theme-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    stroke-width: 1.8;
+  }
+
+  .theme-icon-moon {
+    display: none;
+  }
+
+  :global(html.dark) .theme-icon-sun {
+    display: none;
+  }
+
+  :global(html.dark) .theme-icon-moon {
+    display: block;
   }
 
   .menu-icon {
@@ -172,10 +258,8 @@ import logo from "../assets/logo.svg";
     padding: 0.75rem;
     border: 1px solid rgb(255 255 255 / 0.8);
     border-radius: 1rem;
-    background: rgb(255 255 255 / 0.88);
+    background: rgb(255 255 255 / 0.97);
     box-shadow: 0 20px 50px rgb(30 64 175 / 0.16);
-    backdrop-filter: blur(20px) saturate(145%);
-    -webkit-backdrop-filter: blur(20px) saturate(145%);
   }
 
   .mobile-link {
@@ -188,6 +272,22 @@ import logo from "../assets/logo.svg";
   .mobile-link[aria-current="location"] {
     color: rgb(29 78 216);
     background: rgb(219 234 254 / 0.58);
+  }
+
+  :global(html.dark) .mobile-panel {
+    border-color: rgb(96 165 250 / 0.18);
+    background: rgb(7 11 18 / 0.98);
+    box-shadow: 0 20px 55px rgb(0 0 0 / 0.48);
+  }
+
+  :global(html.dark) .mobile-link {
+    color: rgb(203 213 225);
+  }
+
+  :global(html.dark) .mobile-link:hover,
+  :global(html.dark) .mobile-link[aria-current="location"] {
+    color: rgb(191 219 254);
+    background: rgb(30 64 175 / 0.22);
   }
 
   @media (min-width: 48rem) {
@@ -209,6 +309,38 @@ import logo from "../assets/logo.svg";
   const header = document.querySelector<HTMLElement>(".site-header");
   const toggle = header?.querySelector<HTMLButtonElement>(".menu-toggle");
   const menu = header?.querySelector<HTMLElement>(".nav-links");
+  const themeToggle = header?.querySelector<HTMLButtonElement>(".theme-toggle");
+
+  const setTheme = (dark: boolean, persist = true) => {
+    document.documentElement.classList.toggle("dark", dark);
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
+    themeToggle?.setAttribute("aria-pressed", String(dark));
+    themeToggle?.setAttribute(
+      "aria-label",
+      dark ? "Activar modo claro" : "Activar modo oscuro",
+    );
+    themeToggle?.setAttribute(
+      "title",
+      dark ? "Activar modo claro" : "Activar modo oscuro",
+    );
+    document
+      .querySelector<HTMLMetaElement>('meta[name="theme-color"]')
+      ?.setAttribute("content", dark ? "#070b12" : "#eff6ff");
+
+    if (persist) {
+      try {
+        localStorage.setItem("msa-theme", dark ? "dark" : "light");
+      } catch {
+        // The selected theme still applies when storage is unavailable.
+      }
+    }
+  };
+
+  setTheme(document.documentElement.classList.contains("dark"), false);
+
+  themeToggle?.addEventListener("click", () => {
+    setTheme(!document.documentElement.classList.contains("dark"));
+  });
 
   const setMenuOpen = (open: boolean) => {
     toggle?.setAttribute("aria-expanded", String(open));
@@ -226,7 +358,10 @@ import logo from "../assets/logo.svg";
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && toggle?.getAttribute("aria-expanded") === "true") {
+    if (
+      event.key === "Escape" &&
+      toggle?.getAttribute("aria-expanded") === "true"
+    ) {
       setMenuOpen(false);
       toggle.focus();
     }

@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
     --navy: #071a36;
     --blue: #1260e8;
@@ -7,7 +9,12 @@
     --sky: #eaf2ff;
     --text: #536178;
     --line: #dce4ef;
-    --white: #fff
+    --white: #fff;
+    color-scheme: light;
+}
+
+:root.dark {
+    color-scheme: dark;
 }
 
 * {
@@ -15,5 +22,39 @@
 }
 
 html {
-    scroll-behavior: smooth
+    scroll-behavior: smooth;
+    background: #eff6ff;
+}
+
+html.dark {
+    background: #070b12;
+}
+
+body {
+    min-height: 100vh;
+    color: #334155;
+    background:
+        radial-gradient(circle at 8% 8%, rgb(59 130 246 / 0.16), transparent 28rem),
+        radial-gradient(circle at 92% 38%, rgb(124 58 237 / 0.11), transparent 30rem),
+        #eff6ff;
+    transition: color 250ms ease, background-color 250ms ease;
+}
+
+.dark body {
+    color: #cbd5e1;
+    background:
+        radial-gradient(circle at 8% 8%, rgb(30 64 175 / 0.18), transparent 30rem),
+        radial-gradient(circle at 88% 34%, rgb(51 65 85 / 0.16), transparent 32rem),
+        radial-gradient(circle at 45% 85%, rgb(71 85 105 / 0.1), transparent 34rem),
+        #070b12;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    body {
+        transition: none;
+    }
 }
