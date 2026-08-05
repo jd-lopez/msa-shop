@@ -11,7 +11,7 @@ const assurances = [
 
 <section
   id="inicio"
-  class="hero relative isolate scroll-mt-20 overflow-hidden bg-white shadow-2xl dark:border-b dark:border-blue-400/10 dark:bg-slate-950 dark:shadow-[0_25px_70px_rgba(0,0,0,0.5)]"
+  class="hero relative isolate scroll-mt-20 overflow-hidden bg-white shadow-md dark:border-b dark:border-blue-400/10 dark:bg-slate-950 dark:shadow-[0_25px_70px_rgba(0,0,0,0.5)]"
 >
   <div class="relative z-10 flex flex-col items-center md:flex-row-reverse">
     <div class="relative h-[38rem] w-full shrink-0 md:h-150 md:flex-2 md:p-4">
@@ -40,7 +40,8 @@ const assurances = [
       <div
         class="flex w-fit items-center gap-2 rounded-full border border-blue-200/70 bg-white/85 px-3 py-1.5 text-xs font-bold tracking-[0.14em] text-blue-700 uppercase shadow-sm dark:border-blue-400/25 dark:bg-blue-950/55 dark:text-blue-200"
       >
-        <span class="size-2 rounded-full bg-cyan-400 shadow-[0_0_10px_#22d3ee] dark:bg-blue-400 dark:shadow-[0_0_10px_#60a5fa]"
+        <span
+          class="size-2 rounded-full bg-cyan-400 shadow-[0_0_10px_#22d3ee] dark:bg-blue-400 dark:shadow-[0_0_10px_#60a5fa]"
         ></span>
         Taller automotriz en Residencial Ciudad El Doral
       </div>
@@ -131,10 +132,13 @@ const assurances = [
   :global(html.dark) .hero {
     background:
       radial-gradient(circle at 4% 10%, rgb(30 64 175 / 0.28), transparent 34%),
-      radial-gradient(circle at 46% 96%, rgb(71 85 105 / 0.16), transparent 36%),
+      radial-gradient(
+        circle at 46% 96%,
+        rgb(71 85 105 / 0.16),
+        transparent 36%
+      ),
       radial-gradient(circle at 96% 2%, rgb(37 99 235 / 0.16), transparent 32%),
-      linear-gradient(120deg, rgb(7 11 18), rgb(12 19 31 / 0.98)),
-      rgb(7 11 18);
+      linear-gradient(120deg, rgb(7 11 18), rgb(12 19 31 / 0.98)), rgb(7 11 18);
   }
 
   .hero-photo-tone {
@@ -148,8 +152,16 @@ const assurances = [
 
   :global(html.dark) .hero-photo-tone {
     background:
-      radial-gradient(circle at 82% 12%, rgb(30 64 175 / 0.18), transparent 38%),
-      radial-gradient(circle at 12% 86%, rgb(71 85 105 / 0.14), transparent 42%),
+      radial-gradient(
+        circle at 82% 12%,
+        rgb(30 64 175 / 0.18),
+        transparent 38%
+      ),
+      radial-gradient(
+        circle at 12% 86%,
+        rgb(71 85 105 / 0.14),
+        transparent 42%
+      ),
       linear-gradient(180deg, rgb(7 11 18 / 0.08), rgb(7 11 18 / 0.5));
   }
 

@@ -1,0 +1,160 @@
+---
+import { ArrowUpRight, MapPin } from "@lucide/astro";
+import logoNight from "../assets/logo-night.svg";
+import Instagram from "../assets/instagram-color.svg";
+import Facebook from "../assets/facebook-color.svg";
+import Whatsapp from "../assets/whatsapp-color.svg";
+import Tiktok from "../assets/tiktok-color.svg";
+
+const currentYear = new Date().getFullYear();
+const locationUrl =
+  "https://www.google.com/maps/search/?api=1&query=Residencial+Ciudad+El+Doral%2C+Mateare%2C+Nicaragua";
+
+const navigation = [
+  { label: "Inicio", href: "/" },
+  { label: "Servicios", href: "/servicios" },
+  { label: "Por qué MSA", href: "/#nosotros" },
+  { label: "Marcas", href: "/#marcas" },
+];
+
+const serviceLinks = [
+  { label: "Mecánica general", href: "/servicios#mecanica-general" },
+  {
+    label: "Electricidad automotriz",
+    href: "/servicios#electricidad-automotriz",
+  },
+  { label: "Aire acondicionado", href: "/servicios#aire-acondicionado" },
+  {
+    label: "Mantenimiento preventivo",
+    href: "/servicios#mantenimiento-preventivo",
+  },
+];
+---
+
+<footer
+  class="border-t border-slate-800 bg-[#05080d] px-4 text-slate-300 sm:px-6 lg:px-8"
+>
+  <div class="mx-auto max-w-7xl py-12 lg:py-14">
+    <div
+      class="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.3fr_0.7fr_1fr_1fr] lg:gap-12"
+    >
+      <div class="max-w-sm">
+        <a
+          href="/"
+          class="inline-flex rounded-md focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-4 focus-visible:ring-offset-[#05080d] focus-visible:outline-none"
+          aria-label="MSA Multiservicio Amador, ir al inicio"
+        >
+          <img
+            src={logoNight.src}
+            alt="MSA Multiservicio Amador"
+            width="512"
+            height="271"
+            loading="lazy"
+            decoding="async"
+            class="h-auto w-44"
+          />
+        </a>
+        <p class="mt-4 text-sm leading-6 text-slate-400">
+          Mantenimiento y reparación automotriz con explicaciones claras antes
+          de comenzar el trabajo.
+        </p>
+      </div>
+
+      <nav aria-labelledby="footer-navigation-title">
+        <h2
+          id="footer-navigation-title"
+          class="text-xs font-bold tracking-[0.15em] text-slate-100 uppercase"
+        >
+          Navegación
+        </h2>
+        <ul class="mt-5 grid gap-3 text-sm">
+          {
+            navigation.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="transition-colors hover:text-white focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-4 focus-visible:ring-offset-[#05080d] focus-visible:outline-none"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="footer-services-title">
+        <h2
+          id="footer-services-title"
+          class="text-xs font-bold tracking-[0.15em] text-slate-100 uppercase"
+        >
+          Taller
+        </h2>
+        <ul class="mt-5 grid gap-3 text-sm">
+          {
+            serviceLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="transition-colors hover:text-white focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-4 focus-visible:ring-offset-[#05080d] focus-visible:outline-none"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div>
+        <h2
+          class="text-xs font-bold tracking-[0.15em] text-slate-100 uppercase"
+        >
+          Encuéntranos
+        </h2>
+        <a
+          href={locationUrl}
+          target="_blank"
+          rel="noreferrer"
+          class="group mt-5 flex items-start gap-3 text-sm leading-6 transition-colors hover:text-white focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-4 focus-visible:ring-offset-[#05080d] focus-visible:outline-none"
+        >
+          <MapPin
+            aria-hidden="true"
+            class="mt-0.5 size-4 shrink-0 text-blue-400"
+            stroke-width={2}
+          />
+          <span>
+            Residencial Ciudad El Doral<br />
+            Mateare, Nicaragua
+          </span>
+          <ArrowUpRight
+            aria-hidden="true"
+            class="mt-0.5 size-4 shrink-0 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          />
+        </a>
+
+        <div class="mt-5">
+          <h2 class="text-xs uppercase font-bold">Redes Sociales</h2>
+
+          <div class="flex justify-between mt-2">
+            <a><img src={Instagram.src} class="size-6" alt="" /></a>
+            <a href="tel:50582864467"
+              ><img src={Whatsapp.src} class="size-6" alt="" /></a
+            >
+            <a href="https;//www.facebook.com/share/19etnx6wus/"
+              ><img src={Facebook.src} class="size-6" alt="" /></a
+            >
+            <a><img src={Tiktok.src} class="size-6 bg-white" alt="" /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="mt-10 flex flex-col gap-3 border-t border-slate-800 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p>© {currentYear} MSA Multiservicio Amador.</p>
+      <p>Calidad, honestidad y servicio.</p>
+    </div>
+  </div>
+</footer>
