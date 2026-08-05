@@ -23,10 +23,11 @@ const socialImage = Astro.site
       quality: 82,
     })
   : undefined;
-const socialImageUrl = Astro.site && socialImage
-  ? new URL(socialImage.src, Astro.site)
+const socialImageUrl =
+  Astro.site && socialImage ? new URL(socialImage.src, Astro.site) : undefined;
+const businessId = Astro.site
+  ? new URL("/#business", Astro.site).href
   : undefined;
-const businessId = Astro.site ? new URL("/#business", Astro.site).href : undefined;
 
 const localBusiness = {
   "@type": "AutoRepair",
