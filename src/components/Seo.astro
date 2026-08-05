@@ -1,0 +1,152 @@
+---
+import heroImage from "../assets/owner-hero.png";
+import { getImage } from "astro:assets";
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string;
+}
+
+const { title, description, canonicalPath } = Astro.props;
+const canonicalUrl = Astro.site
+  ? new URL(canonicalPath, Astro.site)
+  : undefined;
+const socialImage = Astro.site
+  ? await getImage({
+      src: heroImage,
+      width: 1200,
+      height: 630,
+      fit: "cover",
+      position: "top",
+      format: "jpg",
+      quality: 82,
+    })
+  : undefined;
+const socialImageUrl = Astro.site && socialImage
+  ? new URL(socialImage.src, Astro.site)
+  : undefined;
+const businessId = Astro.site ? new URL("/#business", Astro.site).href : undefined;
+
+const localBusiness = {
+  "@type": "AutoRepair",
+  ...(businessId ? { "@id": businessId } : {}),
+  name: "MSA Multiservicio Amador",
+  description:
+    "Taller automotriz de mecánica general, electricidad, aire acondicionado y mantenimiento preventivo en Mateare, Nicaragua.",
+  ...(Astro.site ? { url: Astro.site.href } : {}),
+  ...(socialImageUrl ? { image: socialImageUrl.href } : {}),
+  telephone: "+50582864467",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Residencial Ciudad El Doral",
+    addressLocality: "Mateare",
+    addressRegion: "Managua",
+    addressCountry: "NI",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 12.2031262,
+    longitude: -86.3879131,
+  },
+  hasMap:
+    "https://www.google.com/maps/place/Multiservicios+Amador/@12.2031314,-86.3925265,747m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8f7151e229a19c21:0xf25ba6bf68966672!8m2!3d12.2031262!4d-86.3879131!16s%2Fg%2F11zd4t9mkw",
+  areaServed: {
+    "@type": "City",
+    name: "Mateare",
+  },
+  sameAs: ["https://www.facebook.com/profile.php?id=61591593607035"],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Servicios automotrices",
+    itemListElement: [
+      "Mecánica general",
+      "Electricidad automotriz",
+      "Aire acondicionado",
+      "Mantenimiento preventivo",
+      "Instalación de accesorios",
+    ].map((name) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name,
+      },
+    })),
+  },
+};
+
+const graph: Record<string, unknown>[] = [localBusiness];
+
+if (Astro.site && canonicalUrl) {
+  graph.push(
+    {
+      "@type": "WebSite",
+      "@id": new URL("/#website", Astro.site).href,
+      url: Astro.site.href,
+      name: "MSA Multiservicio Amador",
+      inLanguage: "es-NI",
+      publisher: { "@id": businessId },
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${canonicalUrl.href}#webpage`,
+      url: canonicalUrl.href,
+      name: title,
+      description,
+      inLanguage: "es-NI",
+      isPartOf: { "@id": new URL("/#website", Astro.site).href },
+      about: { "@id": businessId },
+    },
+  );
+}
+
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": graph,
+}).replace(/</g, "\\u003c");
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+
+{canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_NI" />
+<meta property="og:site_name" content="MSA Multiservicio Amador" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+{canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+{
+  socialImageUrl && (
+    <>
+      <meta property="og:image" content={socialImageUrl} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:type" content="image/jpeg" />
+      <meta
+        property="og:image:alt"
+        content="Técnico de MSA Multiservicio Amador en el taller"
+      />
+    </>
+  )
+}
+
+<meta
+  name="twitter:card"
+  content={socialImageUrl ? "summary_large_image" : "summary"}
+/>
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{socialImageUrl && <meta name="twitter:image" content={socialImageUrl} />}
+{
+  socialImageUrl && (
+    <meta
+      name="twitter:image:alt"
+      content="Técnico de MSA Multiservicio Amador en el taller"
+    />
+  )
+}
+
+<script type="application/ld+json" set:html={structuredData} />

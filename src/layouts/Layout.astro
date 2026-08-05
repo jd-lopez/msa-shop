@@ -2,11 +2,20 @@
 import Navigation from "../components/Navigation.astro";
 import CallToAction from "../components/CallToAction.astro";
 import Footer from "../components/Footer.astro";
+import Seo from "../components/Seo.astro";
 import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string;
+}
+
+const { title, description, canonicalPath } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es-NI">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -48,6 +57,7 @@ import "../styles/global.css";
       href="/apple-touch-icon.png?v=2"
     />
     <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" href="/sitemap.xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -55,11 +65,7 @@ import "../styles/global.css";
       rel="stylesheet"
     />
     <meta name="generator" content={Astro.generator} />
-    <meta
-      name="description"
-      content="MSA Multiservicio Amador: mantenimiento y reparación automotriz confiable."
-    />
-    <title>MSA | Multiservicio Amador</title>
+    <Seo title={title} description={description} canonicalPath={canonicalPath} />
   </head>
   <body>
     <Navigation />

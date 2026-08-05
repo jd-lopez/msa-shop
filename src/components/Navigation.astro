@@ -2,6 +2,10 @@
 import { Moon, Sun } from "@lucide/astro";
 import logoLight from "../assets/logo-light.svg";
 import logoNight from "../assets/logo-night.svg";
+
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isHome = currentPath === "/";
+const isServices = currentPath === "/servicios";
 ---
 
 <header
@@ -13,7 +17,7 @@ import logoNight from "../assets/logo-night.svg";
   >
     <a
       class="rounded-full size-28 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none"
-      href="/#inicio"
+      href="/"
       aria-label="Ir al inicio"
     >
       <img
@@ -32,8 +36,8 @@ import logoNight from "../assets/logo-night.svg";
     <div
       class="hidden items-center gap-1 text-sm font-bold text-slate-600 dark:text-slate-300 md:flex"
     >
-      <a class="nav-link" href="/" aria-current="location">Inicio</a>
-      <a class="nav-link" href="/servicios">Servicios</a>
+      <a class="nav-link" href="/" aria-current={isHome ? "page" : undefined}>Inicio</a>
+      <a class="nav-link" href="/servicios" aria-current={isServices ? "page" : undefined}>Servicios</a>
       <a class="nav-link" href="/#nosotros">Nosotros</a>
       <a class="nav-link" href="/#contacto">Contacto</a>
     </div>
@@ -71,8 +75,8 @@ import logoNight from "../assets/logo-night.svg";
 
     <div id="mobile-navigation" class="nav-links" aria-hidden="true">
       <div class="mobile-panel">
-        <a class="mobile-link" href="/" aria-current="location">Inicio</a>
-        <a class="mobile-link" href="/servicios">Servicios</a>
+        <a class="mobile-link" href="/" aria-current={isHome ? "page" : undefined}>Inicio</a>
+        <a class="mobile-link" href="/servicios" aria-current={isServices ? "page" : undefined}>Servicios</a>
         <a class="mobile-link" href="/#nosotros">Nosotros</a>
         <a class="mobile-link" href="/#contacto">Contacto</a>
         <a class="nav-cta mt-2 justify-center" href="/#contacto">
@@ -97,13 +101,13 @@ import logoNight from "../assets/logo-night.svg";
   }
 
   .nav-link:hover,
-  .nav-link[aria-current="location"] {
+  .nav-link[aria-current="page"] {
     color: rgb(29 78 216);
     background: rgb(219 234 254 / 0.58);
   }
 
   :global(html.dark) .nav-link:hover,
-  :global(html.dark) .nav-link[aria-current="location"] {
+  :global(html.dark) .nav-link[aria-current="page"] {
     color: rgb(191 219 254);
     background: rgb(30 64 175 / 0.22);
   }

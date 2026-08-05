@@ -4,12 +4,12 @@ import { MessageCircle } from "@lucide/astro";
 const whatsappNumber = "50582864467";
 const maximumVehicleYear = new Date().getFullYear() + 1;
 const serviceOptions = [
-  "Mecánica general",
-  "Electricidad automotriz",
-  "Aire acondicionado",
-  "Mantenimiento preventivo",
-  "Instalación de accesorios",
-  "Otro servicio / diagnóstico",
+  { value: "mecanica-general", label: "Mecánica general" },
+  { value: "electricidad-automotriz", label: "Electricidad automotriz" },
+  { value: "aire-acondicionado", label: "Aire acondicionado" },
+  { value: "mantenimiento-preventivo", label: "Mantenimiento preventivo" },
+  { value: "instalacion-accesorios", label: "Instalación de accesorios" },
+  { value: "otro", label: "Otro servicio / diagnóstico" },
 ];
 ---
 
@@ -23,7 +23,8 @@ const serviceOptions = [
       Datos para la consulta
     </h3>
     <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
-      Todos los campos son obligatorios.
+      Mostraremos únicamente las preguntas necesarias para el servicio que
+      elijas.
     </p>
   </div>
 
@@ -31,7 +32,6 @@ const serviceOptions = [
     <label class="grid gap-2 text-sm font-bold sm:col-span-2">
       Nombre completo
       <input
-        id="contact-name"
         name="name"
         type="text"
         autocomplete="name"
@@ -45,7 +45,6 @@ const serviceOptions = [
     <label class="grid gap-2 text-sm font-bold sm:col-span-2">
       Teléfono
       <input
-        id="contact-phone"
         name="phone"
         type="tel"
         inputmode="tel"
@@ -57,10 +56,26 @@ const serviceOptions = [
       />
     </label>
 
+    <label class="grid gap-2 text-sm font-bold sm:col-span-2">
+      Servicio que buscas
+      <select
+        id="requested-service"
+        name="service"
+        required
+        class="min-h-12 rounded-lg border border-slate-300 bg-white px-4 py-3 font-normal text-slate-900 outline-none transition-[border-color,box-shadow] focus:border-blue-600 focus:ring-3 focus:ring-blue-100 dark:border-slate-600 dark:bg-slate-900 dark:text-white dark:focus:border-blue-400 dark:focus:ring-blue-500/15"
+      >
+        <option value="" selected disabled>Selecciona un servicio</option>
+        {
+          serviceOptions.map((service) => (
+            <option value={service.value}>{service.label}</option>
+          ))
+        }
+      </select>
+    </label>
+
     <label class="grid gap-2 text-sm font-bold">
       Marca
       <input
-        id="vehicle-brand"
         name="brand"
         type="text"
         required
@@ -72,7 +87,6 @@ const serviceOptions = [
     <label class="grid gap-2 text-sm font-bold">
       Modelo
       <input
-        id="vehicle-model"
         name="model"
         type="text"
         required
@@ -81,10 +95,9 @@ const serviceOptions = [
       />
     </label>
 
-    <label class="grid gap-2 text-sm font-bold">
+    <label class="grid gap-2 text-sm font-bold sm:col-span-2">
       Año
       <input
-        id="vehicle-year"
         name="year"
         type="number"
         inputmode="numeric"
@@ -95,9 +108,19 @@ const serviceOptions = [
         class="min-h-12 rounded-lg border border-slate-300 bg-white px-4 py-3 font-normal text-slate-900 outline-none transition-[border-color,box-shadow] placeholder:text-slate-400 focus:border-blue-600 focus:ring-3 focus:ring-blue-100 dark:border-slate-600 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-blue-400 dark:focus:ring-blue-500/15"
       />
     </label>
+  </div>
 
-    <label class="grid gap-2 text-sm font-bold">
-      Kilometraje
+  <div
+    id="service-specific-fields"
+    class="mt-6 grid gap-5 border-t border-slate-200 pt-6 dark:border-slate-700"
+    aria-live="polite"
+  >
+    <label
+      id="mileage-field"
+      class="grid gap-2 text-sm font-bold"
+      hidden
+    >
+      <span id="mileage-label">Kilometraje</span>
       <span class="relative">
         <input
           id="vehicle-mileage"
@@ -106,7 +129,7 @@ const serviceOptions = [
           inputmode="numeric"
           min="0"
           step="1"
-          required
+          disabled
           placeholder="Ej. 85000"
           class="min-h-12 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 pr-12 font-normal text-slate-900 outline-none transition-[border-color,box-shadow] placeholder:text-slate-400 focus:border-blue-600 focus:ring-3 focus:ring-blue-100 dark:border-slate-600 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-blue-400 dark:focus:ring-blue-500/15"
         />
@@ -119,18 +142,51 @@ const serviceOptions = [
       </span>
     </label>
 
-    <label class="grid gap-2 text-sm font-bold sm:col-span-2">
-      Servicio que buscas
+    <label
+      id="service-details-field"
+      class="grid gap-2 text-sm font-bold"
+      hidden
+    >
+      <span id="service-details-label">Detalles del servicio</span>
+      <textarea
+        id="service-details"
+        name="details"
+        rows="4"
+        minlength="4"
+        disabled
+        class="resize-y rounded-lg border border-slate-300 bg-white px-4 py-3 font-normal text-slate-900 outline-none transition-[border-color,box-shadow] placeholder:text-slate-400 focus:border-blue-600 focus:ring-3 focus:ring-blue-100 dark:border-slate-600 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-blue-400 dark:focus:ring-blue-500/15"
+      ></textarea>
+    </label>
+
+    <label
+      id="accessory-status-field"
+      class="grid gap-2 text-sm font-bold"
+      hidden
+    >
+      ¿Ya tienes el accesorio?
       <select
-        id="requested-service"
-        name="service"
-        required
+        id="accessory-status"
+        name="accessoryStatus"
+        disabled
         class="min-h-12 rounded-lg border border-slate-300 bg-white px-4 py-3 font-normal text-slate-900 outline-none transition-[border-color,box-shadow] focus:border-blue-600 focus:ring-3 focus:ring-blue-100 dark:border-slate-600 dark:bg-slate-900 dark:text-white dark:focus:border-blue-400 dark:focus:ring-blue-500/15"
       >
-        <option value="" selected disabled>Selecciona un servicio</option>
-        {serviceOptions.map((service) => <option value={service}>{service}</option>)}
+        <option value="" selected disabled>Selecciona una opción</option>
+        <option value="Ya tengo el accesorio">Ya tengo el accesorio</option>
+        <option value="Quiero consultar disponibilidad limitada">
+          Aún no; quiero consultar disponibilidad
+        </option>
       </select>
+      <span class="font-normal leading-5 text-slate-500 dark:text-slate-400">
+        Actualmente no contamos con un catálogo amplio de accesorios en venta.
+      </span>
     </label>
+
+    <p
+      id="service-fields-placeholder"
+      class="text-sm leading-6 text-slate-500 dark:text-slate-400"
+    >
+      Selecciona un servicio para continuar.
+    </p>
   </div>
 
   <button
@@ -155,17 +211,155 @@ const serviceOptions = [
   const form = document.querySelector<HTMLFormElement>(
     "#whatsapp-contact-form",
   );
-  const status = document.querySelector<HTMLElement>("#whatsapp-form-status");
+  const serviceSelect = form?.querySelector<HTMLSelectElement>(
+    "#requested-service",
+  );
+  const mileageField = form?.querySelector<HTMLElement>("#mileage-field");
+  const mileageInput = form?.querySelector<HTMLInputElement>(
+    "#vehicle-mileage",
+  );
+  const mileageLabel = form?.querySelector<HTMLElement>("#mileage-label");
+  const detailsField = form?.querySelector<HTMLElement>(
+    "#service-details-field",
+  );
+  const detailsInput = form?.querySelector<HTMLTextAreaElement>(
+    "#service-details",
+  );
+  const detailsLabel = form?.querySelector<HTMLElement>(
+    "#service-details-label",
+  );
+  const accessoryStatusField = form?.querySelector<HTMLElement>(
+    "#accessory-status-field",
+  );
+  const accessoryStatus = form?.querySelector<HTMLSelectElement>(
+    "#accessory-status",
+  );
+  const fieldsPlaceholder = form?.querySelector<HTMLElement>(
+    "#service-fields-placeholder",
+  );
+  const status = form?.querySelector<HTMLElement>("#whatsapp-form-status");
+
+  const serviceRules: Record<
+    string,
+    {
+      showMileage?: boolean;
+      requireMileage?: boolean;
+      detailsLabel?: string;
+      detailsPlaceholder?: string;
+      showAccessoryStatus?: boolean;
+    }
+  > = {
+    "mecanica-general": {
+      showMileage: true,
+      requireMileage: true,
+      detailsLabel: "¿Qué falla, ruido o comportamiento has notado?",
+      detailsPlaceholder:
+        "Ej. Escucho un golpe al frenar y el volante vibra desde hace dos días.",
+    },
+    "electricidad-automotriz": {
+      showMileage: true,
+      detailsLabel: "¿Qué falla eléctrica o luz del tablero has notado?",
+      detailsPlaceholder:
+        "Ej. No enciende por la mañana y aparece la luz de batería.",
+    },
+    "aire-acondicionado": {
+      detailsLabel: "¿Qué está haciendo el aire acondicionado?",
+      detailsPlaceholder:
+        "Ej. Enfría poco, funciona por momentos o produce un olor extraño.",
+    },
+    "mantenimiento-preventivo": {
+      showMileage: true,
+      requireMileage: true,
+    },
+    "instalacion-accesorios": {
+      detailsLabel: "¿Qué accesorio deseas instalar?",
+      detailsPlaceholder: "Ej. Radio, pantalla, cámara o luces auxiliares.",
+      showAccessoryStatus: true,
+    },
+    otro: {
+      detailsLabel: "Describe el problema o servicio que buscas",
+      detailsPlaceholder:
+        "Cuéntanos qué has notado o qué trabajo deseas consultar.",
+    },
+  };
+
+  const configureConditionalFields = (clearDetails = false) => {
+    if (
+      !serviceSelect ||
+      !mileageField ||
+      !mileageInput ||
+      !mileageLabel ||
+      !detailsField ||
+      !detailsInput ||
+      !detailsLabel ||
+      !accessoryStatusField ||
+      !accessoryStatus ||
+      !fieldsPlaceholder
+    )
+      return;
+
+    const rule = serviceRules[serviceSelect.value];
+    const showMileage = Boolean(rule?.showMileage);
+    const requireMileage = Boolean(rule?.requireMileage);
+    const showDetails = Boolean(rule?.detailsLabel);
+    const showAccessoryStatus = Boolean(rule?.showAccessoryStatus);
+
+    fieldsPlaceholder.hidden = Boolean(rule);
+
+    mileageField.hidden = !showMileage;
+    mileageInput.disabled = !showMileage;
+    mileageInput.required = requireMileage;
+    mileageLabel.textContent = requireMileage
+      ? "Kilometraje"
+      : "Kilometraje (opcional)";
+
+    detailsField.hidden = !showDetails;
+    detailsInput.disabled = !showDetails;
+    detailsInput.required = showDetails;
+    detailsLabel.textContent = rule?.detailsLabel ?? "Detalles del servicio";
+    detailsInput.placeholder = rule?.detailsPlaceholder ?? "";
+
+    accessoryStatusField.hidden = !showAccessoryStatus;
+    accessoryStatus.disabled = !showAccessoryStatus;
+    accessoryStatus.required = showAccessoryStatus;
+
+    if (clearDetails) {
+      detailsInput.value = "";
+      accessoryStatus.value = "";
+    }
+  };
+
+  serviceSelect?.addEventListener("change", () =>
+    configureConditionalFields(true),
+  );
+  window.addEventListener("pageshow", () => configureConditionalFields());
+  configureConditionalFields();
 
   form?.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    if (!form.reportValidity()) return;
+    if (!form.reportValidity() || !serviceSelect) return;
 
     const formData = new FormData(form);
     const value = (field: string) =>
       String(formData.get(field) ?? "").trim();
-    const mileage = Number(value("mileage")).toLocaleString("es-NI");
+    const serviceLabel =
+      serviceSelect.selectedOptions[0]?.textContent?.trim() ?? value("service");
+    const mileage = value("mileage");
+    const details = value("details");
+    const accessory = value("accessoryStatus");
+    const vehicleDetails = [
+      `Marca: ${value("brand")}`,
+      `Modelo: ${value("model")}`,
+      `Año: ${value("year")}`,
+    ];
+
+    if (mileage) {
+      vehicleDetails.push(
+        `Kilometraje: ${Number(mileage).toLocaleString("es-NI")} km`,
+      );
+    }
+
     const message = [
       "Hola, quisiera consultar un servicio en Multiservicio Amador.",
       "",
@@ -174,12 +368,11 @@ const serviceOptions = [
       `Teléfono: ${value("phone")}`,
       "",
       "*Datos del vehículo*",
-      `Marca: ${value("brand")}`,
-      `Modelo: ${value("model")}`,
-      `Año: ${value("year")}`,
-      `Kilometraje: ${mileage} km`,
+      ...vehicleDetails,
       "",
-      `*Servicio solicitado:* ${value("service")}`,
+      `*Servicio solicitado:* ${serviceLabel}`,
+      ...(details ? [`Detalles: ${details}`] : []),
+      ...(accessory ? [`Accesorio: ${accessory}`] : []),
     ].join("\n");
     const whatsappNumber = form.dataset.whatsappNumber;
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;

@@ -3,8 +3,40 @@ import Layout from "../layouts/Layout.astro";
 import Services from "../components/Services.astro";
 ---
 
-<Layout>
+<Layout
+  title="Servicios automotrices en Mateare | MSA Multiservicio Amador"
+  description="Conoce nuestros servicios de mecánica, electricidad, aire acondicionado, mantenimiento e instalación de accesorios en Mateare, Nicaragua."
+  canonicalPath="/servicios"
+>
   <main>
-    <Services />
+    <section
+      class="border-b border-blue-100 bg-white px-4 py-12 dark:border-slate-800 dark:bg-[#070b12] sm:px-6 lg:px-8 lg:py-16"
+      aria-labelledby="services-page-title"
+    >
+      <div class="mx-auto max-w-7xl">
+        <nav aria-label="Migas de pan" class="mb-5 text-sm text-slate-500 dark:text-slate-400">
+          <ol class="flex items-center gap-2">
+            <li><a href="/" class="hover:text-blue-700 dark:hover:text-blue-300">Inicio</a></li>
+            <li aria-hidden="true">/</li>
+            <li aria-current="page" class="font-semibold text-slate-700 dark:text-slate-200">Servicios</li>
+          </ol>
+        </nav>
+        <p class="text-xs font-bold tracking-[0.16em] text-blue-700 uppercase dark:text-blue-300">
+          Taller multimarca en Mateare
+        </p>
+        <h1
+          id="services-page-title"
+          class="mt-3 max-w-4xl text-4xl leading-tight font-extrabold tracking-tight text-slate-900 sm:text-5xl dark:text-slate-50"
+        >
+          Servicios de diagnóstico, mantenimiento y reparación automotriz
+        </h1>
+        <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600 dark:text-slate-300">
+          Revisamos el vehículo antes de recomendar cambios. Así puedes entender
+          la causa de la falla, las opciones de trabajo y qué necesita atención
+          primero.
+        </p>
+      </div>
+    </section>
+    <Services showCatalogLink={false} />
   </main>
 </Layout>
