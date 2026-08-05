@@ -1,5 +1,6 @@
 ---
 import { ArrowUpRight, MapPin } from "@lucide/astro";
+import ContactForm from "./ContactForm.astro";
 
 const locationUrl =
   "https://www.google.com/maps/place/Multiservicios+Amador/@12.2031314,-86.3925265,747m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8f7151e229a19c21:0xf25ba6bf68966672!8m2!3d12.2031262!4d-86.3879131!16s%2Fg%2F11zd4t9mkw?entry=ttu&g_ep=EgoyMDI2MDgwMi4wIKXMDSoASAFQAw%3D%3D";
@@ -17,73 +18,60 @@ const usefulDetails = [
   aria-labelledby="cta-title"
 >
   <div
-    class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(20rem,0.75fr)] lg:items-end lg:gap-16"
+    class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,0.78fr)_minmax(34rem,1.22fr)] lg:items-start lg:gap-14"
   >
-    <div>
+    <div class="lg:sticky lg:top-28">
       <p
         class="mb-4 text-xs font-bold tracking-[0.18em] text-blue-100 uppercase"
       >
-        Antes de traerlo
+        Solicita una revisión
       </p>
       <h2
         id="cta-title"
-        class="max-w-4xl text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl lg:text-5xl"
+        class="max-w-2xl text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl lg:text-5xl"
       >
-        Dinos qué hace el vehículo, no qué crees que tiene.
+        Cuéntanos qué vehículo tienes y qué servicio necesitas.
       </h2>
-      <p class="mt-5 max-w-2xl text-base leading-7 text-blue-100 sm:text-lg">
-        Una descripción clara nos ayuda a comenzar la revisión por el lugar
-        correcto. Nosotros nos encargamos de encontrar la causa y explicarte el
-        siguiente paso.
+      <p class="mt-5 max-w-xl leading-7 text-blue-100 sm:text-lg">
+        Completa los datos y prepararemos un mensaje para WhatsApp. Podrás
+        revisarlo antes de enviarlo al taller.
       </p>
 
-      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-        <a
-          href={locationUrl}
-          target="_blank"
-          rel="noreferrer"
-          class="group inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white bg-white px-6 py-3 font-bold text-blue-800 shadow-[0_4px_0_#bfdbfe,0_10px_24px_rgba(3,20,55,0.22)] transition-[transform,box-shadow,background-color] duration-150 hover:-translate-y-px hover:bg-blue-50 hover:shadow-[0_5px_0_#bfdbfe,0_13px_28px_rgba(3,20,55,0.25)] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-blue-800 focus-visible:outline-none active:translate-y-[3px] active:shadow-[0_1px_0_#bfdbfe,0_4px_10px_rgba(3,20,55,0.18)] dark:focus-visible:ring-offset-[#0b1e3a]"
-        >
-          <MapPin aria-hidden="true" class="size-4" stroke-width={2.2} />
-          Ver zona en Maps
-          <ArrowUpRight
-            aria-hidden="true"
-            class="size-4 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            stroke-width={2.2}
-          />
-        </a>
-        <a
-          href="/servicios"
-          class="inline-flex min-h-12 items-center justify-center rounded-lg border border-blue-200/55 bg-blue-950/20 px-6 py-3 font-bold text-white shadow-[0_3px_0_rgba(12,38,86,0.65),0_8px_18px_rgba(3,20,55,0.16)] transition-[transform,border-color,background-color,box-shadow] duration-150 hover:-translate-y-px hover:border-white/70 hover:bg-blue-950/30 hover:shadow-[0_4px_0_rgba(12,38,86,0.65),0_11px_22px_rgba(3,20,55,0.2)] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-blue-800 focus-visible:outline-none active:translate-y-[2px] active:shadow-[0_1px_0_rgba(12,38,86,0.65),0_3px_8px_rgba(3,20,55,0.14)] dark:focus-visible:ring-offset-[#0b1e3a]"
-        >
-          Revisar servicios
-        </a>
+      <div class="mt-8 border-t border-blue-200/35 pt-6">
+        <p class="text-sm font-bold text-white">Si presenta una falla, recuerda:</p>
+        <ul class="mt-4 grid gap-3 text-sm text-blue-100">
+          {
+            usefulDetails.map((detail, index) => (
+              <li class="flex items-start gap-4">
+                <span
+                  aria-hidden="true"
+                  class="mt-0.5 font-mono text-xs font-bold tracking-widest text-blue-200"
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span>{detail}</span>
+              </li>
+            ))
+          }
+        </ul>
       </div>
+
+      <a
+        href={locationUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group mt-8 inline-flex items-center gap-2 text-sm font-bold text-white underline decoration-blue-200/60 underline-offset-4 transition-colors hover:text-blue-100 focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-blue-800 focus-visible:outline-none dark:focus-visible:ring-offset-[#0b1e3a]"
+      >
+        <MapPin aria-hidden="true" class="size-4" stroke-width={2.2} />
+        Ver ubicación del taller
+        <ArrowUpRight
+          aria-hidden="true"
+          class="size-4 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          stroke-width={2.2}
+        />
+      </a>
     </div>
 
-    <div
-      class="border-t border-blue-200/35 pt-6 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10"
-    >
-      <p class="text-sm font-bold text-white">Lo que nos ayuda saber</p>
-      <ul class="mt-5 grid gap-4 text-sm text-blue-100">
-        {
-          usefulDetails.map((detail, index) => (
-            <li class="flex items-start gap-4 border-b border-blue-200/25 pb-4 last:border-0">
-              <span
-                aria-hidden="true"
-                class="mt-0.5 font-mono text-xs font-bold tracking-widest text-blue-200"
-              >
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <span>{detail}</span>
-            </li>
-          ))
-        }
-      </ul>
-      <p class="mt-5 flex items-start gap-2 text-sm leading-6 text-blue-100">
-        <MapPin aria-hidden="true" class="mt-0.5 size-4 shrink-0" />
-        Residencial Ciudad El Doral, Mateare, Nicaragua
-      </p>
-    </div>
+    <ContactForm />
   </div>
 </section>

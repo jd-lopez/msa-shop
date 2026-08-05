@@ -6,6 +6,7 @@ import mecanic from "../assets/mecanic.jpg";
 import air from "../assets/air-con.jpg";
 import electrical from "../assets/electrical.jpg";
 import preventive from "../assets/back.jpg";
+import accessories from "../assets/computerized.jpg";
 
 const services = [
   {
@@ -51,6 +52,21 @@ const services = [
       "Organizamos la revisión según el kilometraje y el uso del vehículo para reducir averías inesperadas.",
     details: ["Aceite y filtros", "Fluidos y niveles", "Inspección de desgaste"],
     imagePosition: "object-[center_58%]",
+  },
+  {
+    slug: "instalacion-accesorios",
+    number: "05",
+    eyebrow: "Equipamiento del vehículo",
+    img: accessories,
+    title: "Instalación de accesorios",
+    description:
+      "Instalamos el accesorio que traigas o que consultes con nosotros. Actualmente nos enfocamos en la instalación y no contamos con un catálogo amplio de accesorios en venta.",
+    details: [
+      "Revisión de compatibilidad",
+      "Conexión y montaje",
+      "Prueba de funcionamiento",
+    ],
+    imagePosition: "object-center",
   },
 ];
 ---
@@ -102,7 +118,7 @@ const services = [
         services.map((service) => (
           <article
             id={service.slug}
-            class="group scroll-mt-24 overflow-hidden rounded-xl border border-slate-300 bg-white shadow-[0_8px_24px_rgba(15,23,42,0.06)] transition-[border-color,box-shadow] duration-300 hover:border-slate-400 hover:shadow-[0_12px_30px_rgba(15,23,42,0.09)] dark:border-slate-700 dark:bg-slate-900 dark:shadow-[0_10px_28px_rgba(0,0,0,0.22)] dark:hover:border-slate-600 dark:hover:shadow-[0_14px_34px_rgba(0,0,0,0.3)] sm:grid sm:grid-cols-[minmax(13rem,0.82fr)_minmax(0,1.18fr)]"
+            class={`group scroll-mt-24 overflow-hidden rounded-xl border border-slate-300 bg-white shadow-[0_8px_24px_rgba(15,23,42,0.06)] transition-[border-color,box-shadow] duration-300 hover:border-slate-400 hover:shadow-[0_12px_30px_rgba(15,23,42,0.09)] dark:border-slate-700 dark:bg-slate-900 dark:shadow-[0_10px_28px_rgba(0,0,0,0.22)] dark:hover:border-slate-600 dark:hover:shadow-[0_14px_34px_rgba(0,0,0,0.3)] sm:grid sm:grid-cols-[minmax(13rem,0.82fr)_minmax(0,1.18fr)] ${service.slug === "instalacion-accesorios" ? "lg:col-span-2 lg:grid-cols-[minmax(13rem,0.41fr)_minmax(0,1.59fr)]" : ""}`}
           >
             <div class="relative min-h-56 overflow-hidden border-b border-slate-200 sm:min-h-full sm:border-r sm:border-b-0 dark:border-slate-700">
               <Image
